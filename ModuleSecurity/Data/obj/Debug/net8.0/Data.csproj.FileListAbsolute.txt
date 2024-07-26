@@ -1,0 +1,5 @@
+C:\Users\SENA\Documents\JulianADSO2694667\ModuleSecurity\ModuleSecurity\Data\obj\Debug\net8.0\Data.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\SENA\Documents\JulianADSO2694667\ModuleSecurity\ModuleSecurity\Data\obj\Debug\net8.0\Data.AssemblyInfoInputs.cache
+C:\Users\SENA\Documents\JulianADSO2694667\ModuleSecurity\ModuleSecurity\Data\obj\Debug\net8.0\Data.AssemblyInfo.cs
+C:\Users\SENA\Documents\JulianADSO2694667\ModuleSecurity\ModuleSecurity\Data\obj\Debug\net8.0\Data.csproj.CoreCompileInputs.cache
+C:\Users\SENA\Documents\JulianADSO2694667\ModuleSecurity\ModuleSecurity\Data\obj\Debug\net8.0\Data.sourcelink.json

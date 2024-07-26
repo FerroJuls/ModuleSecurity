@@ -134,7 +134,6 @@
           <Property Name="CreateAt" Type="String" Nullable="false" />
           <Property Name="UpdateAt" Type="String" Nullable="false" />
           <Property Name="DeleteAt" Type="String" Nullable="false" />
-          <Property Name="Viewld" Type="String" Nullable="false" />
           <Property Name="State" Type="Boolean" Nullable="false" />
         </EntityType>
         <Association Name="UserPerson">
