@@ -1,4 +1,6 @@
-﻿using Entity.Context;
+﻿using Data.Interfaces;
+using Entity.Context;
+using Entity.DTO;
 using Entity.Model.Security;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
@@ -20,26 +22,35 @@ namespace Data.Implements
         {
             var entity = await GetById(id);
             if (entity == null)
+            {
                 throw new Exception("Registro no encontrado");
-
-            entity.DeleteAt = DateTime.Parse(DateTime.Today.ToString());
+            }
             context.Roles.Update(entity);
             await context.SaveChangesAsync();
         }
 
-        public async Task<IEnumerable<DataSelectDto>> GetAllSelect()
-        {
-            var sql = @"SELECT Id, CONCAT(Name, ' - ', Description) AS TextoMostrar
-                        FROM Role
-                        WHERE Deleted_at IS NULL AND State = 1
-                        ORDER BY Id ASC";
-            return await context.QueryAsync<DataSelectDto>(sql);
-        }
+        //public async Task<IEnumerable<DataSelectDto>> GetAllSelect()
+        //{
+        //    var sql = @"
+        //                SELECT Id, CONCAT(Name, ' - ', Description) AS TextoMostrar
+        //                FROM Role
+        //                WHERE Deleted_at IS NULL AND State = 1
+        //                ORDER BY Id ASC";
+        //    return await this.context.QueryAsync<DataSelectDto>(sql);
+        //}
 
         public async Task<Role> GetById(int id)
         {
-            var sql = @"SELECT * FROM Role WHERE Id = @Id ORDER BY Id ASC";
-            return await this.context.QueryFirstOrDefaultAsync<Role>(sql, new { Id = id });
+            try
+            {
+                var sql = @"SELECT * FROM Role WHERE Id = @Id ORDER BY Id ASC";
+                return await this.context.QueryFirstOrDefaultAsync<Role>(sql, new { Id = id });
+
+            }
+            catch (Exception)
+            {
+                throw;
+            }
         }
 
         public async Task<Role> Save(Role entity)
@@ -59,11 +70,11 @@ namespace Data.Implements
         {
             return await this.context.Roles.AsNoTracking().Where(item => item.Name == name).FirstOrDefaultAsync();
         }
-
-        public async Task<IEnumerable<Role>> GetAll()
-        {
-            var sql = @"SELECT * FROM Role ORDER BY Id ASC";
-            return await this.context.QueryAsync<Role>(sql);
-        }
+         
+        //public async Task<IEnumerable<Role>> GetAll()
+        //{
+        //    var sql = @"SELECT * FROM Role ORDER BY Id ASC";
+        //    return await this.context.QueryAsync<Role>(sql);
+        //}
     }
 }

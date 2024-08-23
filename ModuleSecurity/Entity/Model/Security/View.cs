@@ -9,15 +9,16 @@ namespace Entity.Model.Security
 {
     public class View
     {
-        private int IdView { get; set; }
-        private string Name { get; set; }
-        private string Description { get; set; }
-        private string CreateAt { get; set; }
-        private string UpdateAt { get; set; }
-        private string DeleteAt { get; set; }
-        private Boolean State { get; set; }
+        public int Id { get; set; }
+        public string Name { get; set; }
+        public string Description { get; set; }
+        public string CreateAt { get; set; }
+        public string UpdateAt { get; set; }
+        public DateTime DeleteAt { get; set; }
+        public bool State { get; set; }
 
         // Relación con Module
-        private Module IdModule { get; set; }
+        public int ModuleId { get; set; }
+        public Module Module { get; set; }
     }
 }

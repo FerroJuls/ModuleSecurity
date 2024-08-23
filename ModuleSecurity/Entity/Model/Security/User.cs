@@ -8,15 +8,16 @@ namespace Entity.Model.Security
 {
     public class User
     {
-        private int IdUser { get; set; }
-        private string Username { get; set; }
-        private string Password { get; set; }
-        private string CreateAt { get; set; }
-        private string UpdateAt { get; set; }
-        private string DeleteAt { get; set; }
-        private Boolean State { get; set; }
+        public int Id { get; set; }
+        public string Username { get; set; }
+        public string Password { get; set; }
+        public string CreateAt { get; set; }
+        public string UpdateAt { get; set; }
+        public DateTime DeleteAt { get; set; }
+        public bool State { get; set; }
 
         // Relación con Person
-        private Person IdPerson { get; set; }
+        public int PersonId { get; set; }
+        public Person Person { get; set; }
     }
 }

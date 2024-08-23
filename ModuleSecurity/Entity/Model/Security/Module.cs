@@ -8,11 +8,11 @@ namespace Entity.Model.Security
 {
     public class Module
     {
-        private int IdModule { get; set; }
-        private string Description { get; set; }
-        private string CreateAt { get; set; }
-        private string UpdateAt { get; set; }
-        private string DeleteAt { get; set; }
-        private Boolean State { get; set; }
+        public int Id { get; set; }
+        public string Description { get; set; }
+        public string CreateAt { get; set; }
+        public string UpdateAt { get; set; }
+        public DateTime DeleteAt { get; set; }
+        public bool State { get; set; }
     }
 }

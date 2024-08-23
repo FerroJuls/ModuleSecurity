@@ -8,14 +8,16 @@ namespace Entity.Model.Security
 {
     public class UserRole
     {
-        private int IdUserRole { get; set; }
-        private string CreateAt { get; set; }
-        private string UpdateAt { get; set; }
-        private string DeleteAt { get; set; }
-        private Boolean State { get; set; }
+        public int Id { get; set; }
+        public string CreateAt { get; set; }
+        public string UpdateAt { get; set; }
+        public DateTime DeleteAt { get; set; }
+        public bool State { get; set; }
 
         // Relación con User y Role
-        private User IdUser { get; set; }
-        private Role IdRole { get; set; }
+        public int RoleId { get; set; }
+        public Role Role { get; set; }
+        public int UserId { get; set; }
+        public User User { get; set; }
     }
 }

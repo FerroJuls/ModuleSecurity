@@ -8,14 +8,14 @@ namespace Entity.Model.Security
 {
     public class RoleView
     {
-        private int IdRoleView { get; set; }
-        private string CreateAt { get; set; }
-        private string UpdateAt { get; set; }
-        private string DeleteAt { get; set; }
-        private Boolean State { get; set; }
+        public int Id { get; set; }
+        public string CreateAt { get; set; }
+        public string UpdateAt { get; set; }
+        public DateTime DeleteAt { get; set; }
+        public bool State { get; set; }
 
         // Relación con Role y View
-        private Role IdRole { get; set; }
-        private View IdView { get; set; }
+        public Role IdRole { get; set; }
+        public View IdView { get; set; }
     }
 }
