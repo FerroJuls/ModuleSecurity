@@ -8,6 +8,7 @@ namespace Data.Interfaces
         public Task<UserRole> GetById(int id);
         public Task<UserRole> Save(UserRole entity);
         public Task Update(UserRole entity);
+        public Task<IEnumerable<UserRole>> GetAll();
         public Task<UserRole> GetByName(int id);
     }
 }

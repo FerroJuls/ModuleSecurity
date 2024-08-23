@@ -1,5 +1,6 @@
 ﻿using Data.Interfaces;
 using Entity.Context;
+using Entity.DTO;
 using Entity.Model.Security;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
@@ -59,5 +60,42 @@ namespace Data.Implements
         {
             return await this.context.Persons.AsNoTracking().Where(item => item.First_name == first_name).FirstOrDefaultAsync();
         }
+
+        //
+
+
+        public async Task<IEnumerable<DataSelectDto>> GetAllSelect()
+        {
+            try
+            {
+                var sql = @"
+                    SELECT Id, CONCAT(Name, ' - ', Description) AS TextoMostrar
+                    FROM Person
+                    WHERE Deleted_at IS NULL AND State = 1
+                    ORDER BY Id ASC";
+
+                return await this.context.QueryAsync<DataSelectDto>(sql);
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("Error al obtener la lista de selección de Persons", ex);
+            }
+        }
+
+
+
+        public async Task<IEnumerable<Person>> GetAll()
+        {
+            try
+            {
+                var sql = "SELECT * FROM Person ORDER BY Id ASC";
+                return await this.context.QueryAsync<Person>(sql);
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("Error al obtener todos los Persons", ex);
+            }
+        }
+
     }
 }

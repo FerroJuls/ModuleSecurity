@@ -8,6 +8,7 @@ namespace Data.Interfaces
         public Task<Person> GetById(int id);
         public Task<Person> Save(Person entity);
         public Task Update(Person entity);
+        public Task<IEnumerable<Person>> GetAll();
         public Task<Person> GetByName(string name);
     }
 }

@@ -29,15 +29,6 @@ namespace Data.Implements
             await context.SaveChangesAsync();
         }
 
-        //public async Task<IEnumerable<DataSelectDto>> GetAllSelect()
-        //{
-        //    var sql = @"
-        //                SELECT Id, CONCAT(Name, ' - ', Description) AS TextoMostrar
-        //                FROM Role
-        //                WHERE Deleted_at IS NULL AND State = 1
-        //                ORDER BY Id ASC";
-        //    return await this.context.QueryAsync<DataSelectDto>(sql);
-        //}
 
         public async Task<Role> GetById(int id)
         {
@@ -70,11 +61,56 @@ namespace Data.Implements
         {
             return await this.context.Roles.AsNoTracking().Where(item => item.Name == name).FirstOrDefaultAsync();
         }
-         
+
+        //public async Task<IEnumerable<DataSelectDto>> GetAllSelect()
+        //{
+        //    var sql = @"
+        //                SELECT Id, CONCAT(Name, ' - ', Description) AS TextoMostrar
+        //                FROM Role
+        //                WHERE Deleted_at IS NULL AND State = 1
+        //                ORDER BY Id ASC";
+        //    return await this.context.QueryAsync<DataSelectDto>(sql);
+        //}
+
+        public async Task<IEnumerable<DataSelectDto>> GetAllSelect()
+        {
+            try
+            {
+                var sql = @"
+                    SELECT Id, CONCAT(Name, ' - ', Description) AS TextoMostrar
+                    FROM Role
+                    WHERE Deleted_at IS NULL AND State = 1
+                    ORDER BY Id ASC";
+
+                return await this.context.QueryAsync<DataSelectDto>(sql);
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("Error al obtener la lista de selección de roles", ex);
+            }
+        }
+
         //public async Task<IEnumerable<Role>> GetAll()
         //{
         //    var sql = @"SELECT * FROM Role ORDER BY Id ASC";
         //    return await this.context.QueryAsync<Role>(sql);
         //}
+
+
+        public async Task<IEnumerable<Role>> GetAll()
+        {
+            try
+            {
+                var sql = "SELECT * FROM Role ORDER BY Id ASC";
+                return await this.context.QueryAsync<Role>(sql);
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("Error al obtener todos los roles", ex);
+            }
+        }
+
+
+
     }
 }

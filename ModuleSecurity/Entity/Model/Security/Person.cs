@@ -16,8 +16,8 @@ namespace Entity.Model.Security
         public string Type_document { get; set; }
         public int Document { get; set; }
         public DateTime Birth_of_date { get; set; }
-        public string CreateAt { get; set; }
-        public string UpdateAt { get; set; }
+        public DateTime CreateAt { get; set; }
+        public DateTime UpdateAt { get; set; }
         public DateTime DeleteAt { get; set; }
         public int Phone { get; set; }
         public bool State { get; set; }

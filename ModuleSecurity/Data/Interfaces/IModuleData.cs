@@ -8,6 +8,7 @@ namespace Data.Interfaces
         public Task<Module> GetById(int id);
         public Task<Module> Save(Module entity);
         public Task Update(Module entity);
+        public Task<IEnumerable<Module>> GetAll();
         public Task<Module> GetByName(string description);
     }
 }

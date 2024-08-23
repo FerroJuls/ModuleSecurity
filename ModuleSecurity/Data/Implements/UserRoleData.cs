@@ -1,5 +1,6 @@
 ﻿using Data.Interfaces;
 using Entity.Context;
+using Entity.DTO;
 using Entity.Model.Security;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
@@ -50,6 +51,42 @@ namespace Data.Implements
         public async Task<UserRole> GetByName(int id)
         {
             return await this.context.UserRoles.AsNoTracking().Where(item => item.Id == id).FirstOrDefaultAsync();
+        }
+
+        //
+
+
+        public async Task<IEnumerable<DataSelectDto>> GetAllSelect()
+        {
+            try
+            {
+                var sql = @"
+                    SELECT Id, CONCAT(Name, ' - ', Description) AS TextoMostrar
+                    FROM UserRole
+                    WHERE Deleted_at IS NULL AND State = 1
+                    ORDER BY Id ASC";
+
+                return await this.context.QueryAsync<DataSelectDto>(sql);
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("Error al obtener la lista de selección de UserRoles", ex);
+            }
+        }
+
+
+
+        public async Task<IEnumerable<UserRole>> GetAll()
+        {
+            try
+            {
+                var sql = "SELECT * FROM UserRole ORDER BY Id ASC";
+                return await this.context.QueryAsync<UserRole>(sql);
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("Error al obtener todos los UserRoles", ex);
+            }
         }
     }
 }

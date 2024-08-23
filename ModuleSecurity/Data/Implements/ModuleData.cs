@@ -1,5 +1,6 @@
 ﻿using Data.Interfaces;
 using Entity.Context;
+using Entity.DTO;
 using Entity.Model.Security;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
@@ -51,6 +52,42 @@ namespace Data.Implements
         public async Task<Module> GetByName(string description)
         {
             return await this.context.Modules.AsNoTracking().Where(item => item.Description == description).FirstOrDefaultAsync();
+        }
+
+        //
+
+
+        public async Task<IEnumerable<DataSelectDto>> GetAllSelect()
+        {
+            try
+            {
+                var sql = @"
+                    SELECT Id, CONCAT(Name, ' - ', Description) AS TextoMostrar
+                    FROM Module
+                    WHERE Deleted_at IS NULL AND State = 1
+                    ORDER BY Id ASC";
+
+                return await this.context.QueryAsync<DataSelectDto>(sql);
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("Error al obtener la lista de selección de Modules", ex);
+            }
+        }
+
+
+
+        public async Task<IEnumerable<Module>> GetAll()
+        {
+            try
+            {
+                var sql = "SELECT * FROM Module ORDER BY Id ASC";
+                return await this.context.QueryAsync<Module>(sql);
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("Error al obtener todos los Modules", ex);
+            }
         }
 
     }
