@@ -1,24 +1,20 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\SENA\\Documents\\JulianADSO2694667\\ModuleSecurity\\ModuleSecurity\\Utilities\\Utilities.csproj": {}
+    "C:\\Users\\Lenovo\\OneDrive\\Documentos\\ModuleSecurity\\ModuleSecurity\\Utilities\\Utilities.csproj": {}
   },
   "projects": {
-    "C:\\Users\\SENA\\Documents\\JulianADSO2694667\\ModuleSecurity\\ModuleSecurity\\Utilities\\Utilities.csproj": {
+    "C:\\Users\\Lenovo\\OneDrive\\Documentos\\ModuleSecurity\\ModuleSecurity\\Utilities\\Utilities.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\SENA\\Documents\\JulianADSO2694667\\ModuleSecurity\\ModuleSecurity\\Utilities\\Utilities.csproj",
+        "projectUniqueName": "C:\\Users\\Lenovo\\OneDrive\\Documentos\\ModuleSecurity\\ModuleSecurity\\Utilities\\Utilities.csproj",
         "projectName": "Utilities",
-        "projectPath": "C:\\Users\\SENA\\Documents\\JulianADSO2694667\\ModuleSecurity\\ModuleSecurity\\Utilities\\Utilities.csproj",
-        "packagesPath": "C:\\Users\\SENA\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\SENA\\Documents\\JulianADSO2694667\\ModuleSecurity\\ModuleSecurity\\Utilities\\obj\\",
+        "projectPath": "C:\\Users\\Lenovo\\OneDrive\\Documentos\\ModuleSecurity\\ModuleSecurity\\Utilities\\Utilities.csproj",
+        "packagesPath": "C:\\Users\\Lenovo\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\Lenovo\\OneDrive\\Documentos\\ModuleSecurity\\ModuleSecurity\\Utilities\\obj\\",
         "projectStyle": "PackageReference",
-        "fallbackFolders": [
-          "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
-        ],
         "configFilePaths": [
-          "C:\\Users\\SENA\\AppData\\Roaming\\NuGet\\NuGet.Config",
-          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
+          "C:\\Users\\Lenovo\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [

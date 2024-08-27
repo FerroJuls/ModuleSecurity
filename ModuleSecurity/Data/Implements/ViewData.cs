@@ -88,5 +88,10 @@ namespace Data.Implements
                 throw new Exception("Error al obtener todos los Views", ex);
             }
         }
+
+        public Task<UserRole> Save(UserRole userRole)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

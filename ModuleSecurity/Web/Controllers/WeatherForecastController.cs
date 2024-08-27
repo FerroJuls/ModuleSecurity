@@ -1,33 +1,65 @@
+using Entity.DTO;
 using Microsoft.AspNetCore.Mvc;
+using System.Reflection;
 
-namespace Web.Controllers
+namespace Web.Controllers.Implements
 {
     [ApiController]
     [Route("[controller]")]
-    public class WeatherForecastController : ControllerBase
+    public class ModuleController : ControllerBase
     {
-        private static readonly string[] Summaries = new[]
-        {
-            "Freezing", "Bracing", "Chilly", "Cool", "Mild", "Warm", "Balmy", "Hot", "Sweltering", "Scorching"
-        };
+        private readonly IModuleBusiness _moduleBusiness;
 
-        private readonly ILogger<WeatherForecastController> _logger;
-
-        public WeatherForecastController(ILogger<WeatherForecastController> logger)
+        public ModuleController(IModuleBusiness moduloBusiness)
         {
-            _logger = logger;
+            _moduleBusiness = moduloBusiness;
         }
 
-        [HttpGet(Name = "GetWeatherForecast")]
-        public IEnumerable<WeatherForecast> Get()
+        [HttpGet]
+        public async Task<ActionResult<IEnumerable<ModuleDto>>> GetAll()
         {
-            return Enumerable.Range(1, 5).Select(index => new WeatherForecast
+            var result = await _moduleBusiness.GetAll();
+            return Ok(result);
+        }
+
+        [HttpGet("{id}")]
+        public async Task<ActionResult<ModuloDto>> GetById(int id)
+        {
+            var result = await _moduleBusiness.GetById(id);
+            if (result == null)
             {
-                Date = DateOnly.FromDateTime(DateTime.Now.AddDays(index)),
-                TemperatureC = Random.Shared.Next(-20, 55),
-                Summary = Summaries[Random.Shared.Next(Summaries.Length)]
-            })
-            .ToArray();
+                return NotFound();
+            }
+            return Ok(result);
+
+            [HttpPost]
+            public async Task<ActionResult<Modulo>> Save([FromBody] ModuloDto entity)
+            {
+                if (entity == null)
+                {
+                    return BadRequest("Entity is null");
+                }
+
+                var result = await _moduleBusiness.Save(entity);
+                return CreatedAtAction(nameof(GetById), new { id = result.Id }, result);
+            }
+
+            [HttpPut("{id}")]
+            public async Task<IActionResult> Update([FromBody] ModuloDto entity)
+            {
+                if (entity == null || entity.Id == 0)
+                {
+                    return BadRequest();
+                }
+
+                await _moduleBusiness.Update(entity);
+                return NoContent();
+            }
+
+            [HttpDelete("{id}")]
+            public async Task<IActionResult> Delete(int id)
+            {
+                await _moduleBusiness.Delete(id);
+                return NoContent();
+            }
         }
-    }
-}
