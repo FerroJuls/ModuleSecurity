@@ -48,9 +48,9 @@ namespace Data.Implements
             await context.SaveChangesAsync();
         }
 
-        public async Task<User> GetByName(string name)
+        public async Task<User> GetByUsername(string username)
         {
-            return await this.context.Roles.AsNoTracking().Where(item => item.Name == name).FirstOrDefaultAsync();
+            return await this.context.Users.AsNoTracking().Where(item => item.Username == username).FirstOrDefaultAsync();
         }
 
         //
@@ -87,6 +87,11 @@ namespace Data.Implements
             {
                 throw new Exception("Error al obtener todos los Users", ex);
             }
+        }
+
+        public Task<User> GetByName(string username)
+        {
+            throw new NotImplementedException();
         }
     }
 }

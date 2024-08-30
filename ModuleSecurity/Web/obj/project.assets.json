@@ -3344,19 +3344,24 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\Lenovo\\.nuget\\packages\\": {}
+    "C:\\Users\\SENA\\.nuget\\packages\\": {},
+    "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\Lenovo\\OneDrive\\Documentos\\ModuleSecurity\\ModuleSecurity\\Web\\Web.csproj",
+      "projectUniqueName": "C:\\Users\\SENA\\Documents\\JulianADSO2694667\\ModuleSecurity\\ModuleSecurity\\Web\\Web.csproj",
       "projectName": "Web",
-      "projectPath": "C:\\Users\\Lenovo\\OneDrive\\Documentos\\ModuleSecurity\\ModuleSecurity\\Web\\Web.csproj",
-      "packagesPath": "C:\\Users\\Lenovo\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\Lenovo\\OneDrive\\Documentos\\ModuleSecurity\\ModuleSecurity\\Web\\obj\\",
+      "projectPath": "C:\\Users\\SENA\\Documents\\JulianADSO2694667\\ModuleSecurity\\ModuleSecurity\\Web\\Web.csproj",
+      "packagesPath": "C:\\Users\\SENA\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\SENA\\Documents\\JulianADSO2694667\\ModuleSecurity\\ModuleSecurity\\Web\\obj\\",
       "projectStyle": "PackageReference",
+      "fallbackFolders": [
+        "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
+      ],
       "configFilePaths": [
-        "C:\\Users\\Lenovo\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Users\\SENA\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [
@@ -3371,11 +3376,11 @@
         "net8.0": {
           "targetAlias": "net8.0",
           "projectReferences": {
-            "C:\\Users\\Lenovo\\OneDrive\\Documentos\\ModuleSecurity\\ModuleSecurity\\Business\\Business.csproj": {
-              "projectPath": "C:\\Users\\Lenovo\\OneDrive\\Documentos\\ModuleSecurity\\ModuleSecurity\\Business\\Business.csproj"
+            "C:\\Users\\SENA\\Documents\\JulianADSO2694667\\ModuleSecurity\\ModuleSecurity\\Business\\Business.csproj": {
+              "projectPath": "C:\\Users\\SENA\\Documents\\JulianADSO2694667\\ModuleSecurity\\ModuleSecurity\\Business\\Business.csproj"
             },
-            "C:\\Users\\Lenovo\\OneDrive\\Documentos\\ModuleSecurity\\ModuleSecurity\\Entity\\Entity.csproj": {
-              "projectPath": "C:\\Users\\Lenovo\\OneDrive\\Documentos\\ModuleSecurity\\ModuleSecurity\\Entity\\Entity.csproj"
+            "C:\\Users\\SENA\\Documents\\JulianADSO2694667\\ModuleSecurity\\ModuleSecurity\\Entity\\Entity.csproj": {
+              "projectPath": "C:\\Users\\SENA\\Documents\\JulianADSO2694667\\ModuleSecurity\\ModuleSecurity\\Entity\\Entity.csproj"
             }
           }
         }
