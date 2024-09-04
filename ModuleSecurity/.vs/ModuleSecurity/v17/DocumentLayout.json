@@ -1,12 +1,101 @@
 {
   "Version": 1,
   "WorkspaceRootPath": "C:\\Users\\SENA\\Documents\\JulianADSO2694667\\ModuleSecurity\\ModuleSecurity\\",
-  "Documents": [],
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{C280230A-ABF6-4A75-94A0-927D9AEFE052}|Entity\\Entity.csproj|c:\\users\\sena\\documents\\julianadso2694667\\modulesecurity\\modulesecurity\\entity\\migrations\\20240904173606_inicial.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{C280230A-ABF6-4A75-94A0-927D9AEFE052}|Entity\\Entity.csproj|solutionrelative:entity\\migrations\\20240904173606_inicial.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{C59C820D-B25C-4B90-BA09-24DCB94AE033}|Web\\Web.csproj|c:\\users\\sena\\documents\\julianadso2694667\\modulesecurity\\modulesecurity\\web\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{C59C820D-B25C-4B90-BA09-24DCB94AE033}|Web\\Web.csproj|solutionrelative:web\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{C59C820D-B25C-4B90-BA09-24DCB94AE033}|Web\\Web.csproj|c:\\users\\sena\\documents\\julianadso2694667\\modulesecurity\\modulesecurity\\web\\appsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}",
+      "RelativeMoniker": "D:0:0:{C59C820D-B25C-4B90-BA09-24DCB94AE033}|Web\\Web.csproj|solutionrelative:web\\appsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{CC2B26E1-3C49-4102-A89A-9C7A1DBDCEE5}|Data\\Data.csproj|c:\\users\\sena\\documents\\julianadso2694667\\modulesecurity\\modulesecurity\\data\\implements\\roledata.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{CC2B26E1-3C49-4102-A89A-9C7A1DBDCEE5}|Data\\Data.csproj|solutionrelative:data\\implements\\roledata.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{C280230A-ABF6-4A75-94A0-927D9AEFE052}|Entity\\Entity.csproj|c:\\users\\sena\\documents\\julianadso2694667\\modulesecurity\\modulesecurity\\entity\\dto\\persondto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{C280230A-ABF6-4A75-94A0-927D9AEFE052}|Entity\\Entity.csproj|solutionrelative:entity\\dto\\persondto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    }
+  ],
   "DocumentGroupContainers": [
     {
       "Orientation": 0,
       "VerticalTabListWidth": 256,
-      "DocumentGroups": []
+      "DocumentGroups": [
+        {
+          "DockedWidth": 200,
+          "SelectedChildIndex": 0,
+          "Children": [
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "20240904173606_Inicial.cs",
+              "DocumentMoniker": "C:\\Users\\SENA\\Documents\\JulianADSO2694667\\ModuleSecurity\\ModuleSecurity\\Entity\\Migrations\\20240904173606_Inicial.cs",
+              "RelativeDocumentMoniker": "Entity\\Migrations\\20240904173606_Inicial.cs",
+              "ToolTip": "C:\\Users\\SENA\\Documents\\JulianADSO2694667\\ModuleSecurity\\ModuleSecurity\\Entity\\Migrations\\20240904173606_Inicial.cs",
+              "RelativeToolTip": "Entity\\Migrations\\20240904173606_Inicial.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAACEAAAA4AAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-09-04T17:36:07.143Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "appsettings.json",
+              "DocumentMoniker": "C:\\Users\\SENA\\Documents\\JulianADSO2694667\\ModuleSecurity\\ModuleSecurity\\Web\\appsettings.json",
+              "RelativeDocumentMoniker": "Web\\appsettings.json",
+              "ToolTip": "C:\\Users\\SENA\\Documents\\JulianADSO2694667\\ModuleSecurity\\ModuleSecurity\\Web\\appsettings.json",
+              "RelativeToolTip": "Web\\appsettings.json",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAMAAABYAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001642|",
+              "WhenOpened": "2024-09-04T17:21:01.243Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "Program.cs",
+              "DocumentMoniker": "C:\\Users\\SENA\\Documents\\JulianADSO2694667\\ModuleSecurity\\ModuleSecurity\\Web\\Program.cs",
+              "RelativeDocumentMoniker": "Web\\Program.cs",
+              "ToolTip": "C:\\Users\\SENA\\Documents\\JulianADSO2694667\\ModuleSecurity\\ModuleSecurity\\Web\\Program.cs",
+              "RelativeToolTip": "Web\\Program.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAYAAABQAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-09-04T17:19:36.616Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "RoleData.cs",
+              "DocumentMoniker": "C:\\Users\\SENA\\Documents\\JulianADSO2694667\\ModuleSecurity\\ModuleSecurity\\Data\\Implements\\RoleData.cs",
+              "RelativeDocumentMoniker": "Data\\Implements\\RoleData.cs",
+              "ToolTip": "C:\\Users\\SENA\\Documents\\JulianADSO2694667\\ModuleSecurity\\ModuleSecurity\\Data\\Implements\\RoleData.cs",
+              "RelativeToolTip": "Data\\Implements\\RoleData.cs",
+              "ViewState": "AQIAAEUAAAAAAAAAAAAmwFAAAAAdAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-09-04T17:18:38.434Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "PersonDto.cs",
+              "DocumentMoniker": "C:\\Users\\SENA\\Documents\\JulianADSO2694667\\ModuleSecurity\\ModuleSecurity\\Entity\\DTO\\PersonDto.cs",
+              "RelativeDocumentMoniker": "Entity\\DTO\\PersonDto.cs",
+              "ToolTip": "C:\\Users\\SENA\\Documents\\JulianADSO2694667\\ModuleSecurity\\ModuleSecurity\\Entity\\DTO\\PersonDto.cs",
+              "RelativeToolTip": "Entity\\DTO\\PersonDto.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-09-04T17:18:27.626Z"
+            }
+          ]
+        }
+      ]
     }
   ]
 }
