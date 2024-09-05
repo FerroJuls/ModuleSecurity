@@ -26,7 +26,6 @@ namespace Business.Implements
             {
                 Id = state.Id,
                 Name = state.Name,
-                Abbreviation = state.Abbreviation,
             });
 
             return stateDtos;

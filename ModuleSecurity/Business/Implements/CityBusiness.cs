@@ -47,7 +47,6 @@ namespace Business.Implements
         {
             city.Id = entity.Id;
             city.Name = entity.Name;
-            city.Population = entity.Population;
 
             return city;
         }

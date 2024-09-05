@@ -27,7 +27,6 @@ namespace Business.Implements
             {
                 Id = country.Id,
                 Name = country.Name,
-                IsoCode = country.IsoCode,
             });
 
             return countryDtos;
