@@ -1,4 +1,4 @@
-﻿using Business.Interface;
+﻿using Business.Interfaces;
 using Data.Interfaces;
 using Entity.DTO;
 using Entity.Model.Security;
@@ -47,7 +47,7 @@ namespace Business.Implements
         {
             city.Id = entity.Id;
             city.Name = entity.Name;
-
+    
             return city;
         }
 

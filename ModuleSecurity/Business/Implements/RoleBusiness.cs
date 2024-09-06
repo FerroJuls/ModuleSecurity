@@ -1,5 +1,5 @@
-﻿using Business.Interface;
-using Data.Interfaces;
+﻿using Business.Interfaces;
+using Data.interfaces;
 using Entity.DTO;
 using Entity.Model.Security;
 
@@ -21,16 +21,21 @@ namespace Business.Implements
 
         public async Task<IEnumerable<RoleDto>> GetAll()
         {
-            IEnumerable<Role> roles = await this.data.GetAll();
-            var roleDtos = roles.Select(role => new RoleDto
+            IEnumerable<Role> role = await this.data.GetAll();
+            var roleDtos = role.Select(role => new RoleDto
             {
                 Id = role.Id,
                 Name = role.Name,
-                Description = role.Description
+               
             });
 
             return roleDtos;
         }
+
+        //public async Task<IEnumerable<DataSelectDto>> GetAllSelect()
+        //{
+        //    return await this.data.GetAllSelect();
+        //}
 
         public async Task<RoleDto> GetById(int id)
         {
@@ -39,16 +44,20 @@ namespace Business.Implements
 
             roleDto.Id = role.Id;
             roleDto.Name = role.Name;
-            roleDto.Description = role.Description;
-
+          
             return roleDto;
+        }
+
+        public Task<Role> GetByName(string name)
+        {
+            throw new NotImplementedException();
         }
 
         public Role mapearDatos(Role role, RoleDto entity)
         {
             role.Id = entity.Id;
             role.Name = entity.Name;
-            role.Description = entity.Description;
+    
 
             return role;
         }

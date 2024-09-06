@@ -1,19 +1,20 @@
-﻿using Data.Interfaces;
+﻿
+using Data.Interfaces;
 using Entity.Context;
 using Entity.DTO;
 using Entity.Model.Security;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
-using System.Diagnostics.Metrics;
+
 
 namespace Data.Implements
 {
-    public class CountryData : ICountryData
+    public class CountriesData : ICountriesData
     {
         private readonly ApplicationDBContext context;
         protected readonly IConfiguration configuration;
 
-        public CountryData(ApplicationDBContext context, IConfiguration configuration)
+        public CountriesData(ApplicationDBContext context, IConfiguration configuration)
         {
             this.context = context;
             this.configuration = configuration;
@@ -30,26 +31,26 @@ namespace Data.Implements
             await context.SaveChangesAsync();
         }
 
-        public async Task<Country> GetById(int id)
+        public async Task<Countries> GetById(int id)
         {
             var sql = @"SELECT * FROM Country WHERE Id = @Id ORDER BY Id ASC";
-            return await this.context.QueryFirstOrDefaultAsync<Country>(sql, new { Id = id });
+            return await this.context.QueryFirstOrDefaultAsync<Countries>(sql, new { Id = id });
         }
 
-        public async Task<Country> Save(Country entity)
+        public async Task<Countries> Save(Countries entity)
         {
             context.Countries.Add(entity);
             await context.SaveChangesAsync();
             return entity;
         }
 
-        public async Task Update(Country entity)
+        public async Task Update(Countries entity)
         {
             context.Entry(entity).State = EntityState.Modified;
             await context.SaveChangesAsync();
         }
 
-        public async Task<Country> GetByName(string name)
+        public async Task<Countries> GetByName(string name)
         {
             return await this.context.Countries.AsNoTracking().Where(item => item.Name == name).FirstOrDefaultAsync();
         }
@@ -72,12 +73,12 @@ namespace Data.Implements
             }
         }
 
-        public async Task<IEnumerable<Country>> GetAll()
+        public async Task<IEnumerable<Countries>> GetAll()
         {
             try
             {
-                var sql = "SELECT * FROM Country ORDER BY Id ASC";
-                return await this.context.QueryAsync<Country>(sql);
+                var sql = "SELECT * FROM Countries ORDER BY Id ASC";
+                return await this.context.QueryAsync<Countries>(sql);
             }
             catch (Exception ex)
             {

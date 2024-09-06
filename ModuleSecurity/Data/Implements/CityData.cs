@@ -25,7 +25,7 @@ namespace Data.Implements
                 throw new Exception("Registro no encontrado");
 
             entity.DeleteAt = DateTime.Parse(DateTime.Today.ToString());
-            context.Cities.Update(entity);
+            context.City.Update(entity);
             await context.SaveChangesAsync();
         }
 
@@ -37,7 +37,7 @@ namespace Data.Implements
 
         public async Task<City> Save(City entity)
         {
-            context.Cities.Add(entity);
+            context.City.Add(entity);
             await context.SaveChangesAsync();
             return entity;
         }
@@ -50,7 +50,7 @@ namespace Data.Implements
 
         public async Task<City> GetByName(string name)
         {
-            return await this.context.Cities.AsNoTracking().Where(item => item.Name == name).FirstOrDefaultAsync();
+            return await this.context.City.AsNoTracking().Where(item => item.Name == name).FirstOrDefaultAsync();
         }
 
         public async Task<IEnumerable<DataSelectDto>> GetAllSelect()

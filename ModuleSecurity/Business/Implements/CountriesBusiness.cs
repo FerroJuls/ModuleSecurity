@@ -1,16 +1,15 @@
-﻿using Business.Interface;
+﻿using Business.Interfaces;
 using Data.Interfaces;
 using Entity.DTO;
 using Entity.Model.Security;
-using System.Diagnostics.Metrics;
 
 namespace Business.Implements
 {
-    public class CountryBusiness : ICountryBusiness
+    public class CountriesBusiness : ICountriesBusiness
     {
-        protected readonly ICountryData data;
+        protected readonly ICountriesData data;
 
-        public CountryBusiness(ICountryData data)
+        public CountriesBusiness(ICountriesData data)
         {
             this.data = data;
         }
@@ -20,39 +19,39 @@ namespace Business.Implements
             await this.data.Delete(id);
         }
 
-        public async Task<IEnumerable<CountryDto>> GetAll()
+        public async Task<IEnumerable<CountriesDto>> GetAll()
         {
-            IEnumerable<Country> countries = await this.data.GetAll();
-            var countryDtos = countries.Select(country => new CountryDto
+            IEnumerable<Countries> countries = await this.data.GetAll();
+            var countriesDto = countries.Select(countries => new CountriesDto
             {
-                Id = country.Id,
-                Name = country.Name,
+                Id = countries.Id,
+                Name = countries.Name,
             });
 
-            return countryDtos;
+            return countriesDto;
         }
 
-        public async Task<CountryDto> GetById(int id)
+        public async Task<CountriesDto> GetById(int id)
         {
-            Country country = await this.data.GetById(id);
-            CountryDto countryDto = new CountryDto
+            Countries countries = await this.data.GetById(id);
+            CountriesDto countriesDto = new CountriesDto
             {
-                Id = country.Id,
-                Name = country.Name,
+                Id = countries.Id,
+                Name = countries.Name,
             };
-            return countryDto;
+            return countriesDto;
         }
 
-        public Country mapearDatos(Country country, CountryDto entity)
+        public Countries mapearDatos(Countries country, CountriesDto entity)
         {
             country.Id = entity.Id;
             country.Name = entity.Name;
             return country;
         }
 
-        public async Task<Country> Save(CountryDto entity)
+        public async Task<Countries> Save(CountriesDto entity)
         {
-            Country country = new Country
+            Countries country = new Countries
             {
                 CreateAt = DateTime.Now.AddHours(-5)
             };
@@ -61,9 +60,9 @@ namespace Business.Implements
             return await this.data.Save(country);
         }
 
-        public async Task Update(CountryDto entity)
+        public async Task Update(CountriesDto entity)
         {
-            Country country = await this.data.GetById(entity.Id);
+            Countries country = await this.data.GetById(entity.Id);
             if (country == null)
             {
                 throw new Exception("Registro no encontrado");

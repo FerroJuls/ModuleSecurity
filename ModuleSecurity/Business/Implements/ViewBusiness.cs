@@ -1,5 +1,5 @@
-﻿using Business.Interface;
-using Data.Interfaces;
+﻿using Business.Interfaces;
+using Data.interfaces;
 using Entity.DTO;
 using Entity.Model.Security;
 
@@ -26,7 +26,7 @@ namespace Business.Implements
             {
                 Id = view.Id,
                 Name = view.Name,
-                Description = view.Description
+                Description = view.Description,
             });
 
             return viewDtos;
@@ -45,7 +45,7 @@ namespace Business.Implements
             viewDto.Id = view.Id;
             viewDto.Name = view.Name;
             viewDto.Description = view.Description;
-
+          
             return viewDto;
         }
 
@@ -54,6 +54,7 @@ namespace Business.Implements
             view.Id = entity.Id;
             view.Name = entity.Name;
             view.Description = entity.Description;
+            view.State = entity.State;
 
             return view;
         }
@@ -81,4 +82,3 @@ namespace Business.Implements
         }
     }
 }
-

@@ -1,9 +1,13 @@
-﻿using Data.Interfaces;
+﻿using Data.interfaces;
 using Entity.Context;
-using Entity.DTO;
 using Entity.Model.Security;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
 
 namespace Data.Implements
 {
@@ -25,19 +29,38 @@ namespace Data.Implements
                 throw new Exception("Registro no encontrado");
 
             entity.DeleteAt = DateTime.Parse(DateTime.Today.ToString());
-            context.UserRoles.Update(entity);
+            context.UserRole.Update(entity);
             await context.SaveChangesAsync();
         }
 
+        //public async Task<IEnumerable<DataSelectDto>> GetAllSelect()
+        //{
+        //    var sql = @"SELECT Id, CONCAT(Name, ' - ', Description) AS TextoMostrar
+        //                FROM Role
+        //                WHERE Deleted_at IS NULL AND State = 1
+        //                ORDER BY Id ASC";
+        //    return await context.QueryAsync<DataSelectDto>(sql);
+        //}
+
         public async Task<UserRole> GetById(int id)
         {
-            var sql = @"SELECT * FROM UserRole WHERE Id = @Id ORDER BY Id ASC";
-            return await this.context.QueryFirstOrDefaultAsync<UserRole>(sql, new { Id = id });
+            try
+            {
+                var sql = @"SELECT * FROM Role WHERE Id = @Id ORDER BY Id ASC";
+                return await this.context.QueryFirstOrDefaultAsync<UserRole>(sql, new { Id = id });
+
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+
         }
+
 
         public async Task<UserRole> Save(UserRole entity)
         {
-            context.UserRoles.Add(entity);
+            context.UserRole.Add(entity);
             await context.SaveChangesAsync();
             return entity;
         }
@@ -48,45 +71,15 @@ namespace Data.Implements
             await context.SaveChangesAsync();
         }
 
-        public async Task<UserRole> GetByName(int id)
-        {
-            return await this.context.UserRoles.AsNoTracking().Where(item => item.Id == id).FirstOrDefaultAsync();
-        }
-
-        //
-
-
-        public async Task<IEnumerable<DataSelectDto>> GetAllSelect()
-        {
-            try
-            {
-                var sql = @"
-                    SELECT Id, CONCAT(Name, ' - ', Description) AS TextoMostrar
-                    FROM UserRole
-                    WHERE Deleted_at IS NULL AND State = 1
-                    ORDER BY Id ASC";
-
-                return await this.context.QueryAsync<DataSelectDto>(sql);
-            }
-            catch (Exception ex)
-            {
-                throw new Exception("Error al obtener la lista de selección de UserRoles", ex);
-            }
-        }
-
-
+        //public async Task<UserRole> GetByName(string name)
+        //{
+        //    return await this.context.UserRole.AsNoTracking().Where(item => item.Name == name).FirstOrDefaultAsync();
+        //}
 
         public async Task<IEnumerable<UserRole>> GetAll()
         {
-            try
-            {
-                var sql = "SELECT * FROM UserRole ORDER BY Id ASC";
-                return await this.context.QueryAsync<UserRole>(sql);
-            }
-            catch (Exception ex)
-            {
-                throw new Exception("Error al obtener todos los UserRoles", ex);
-            }
+            var sql = @"SELECT * FROM Role ORDER BY Id ASC";
+            return await this.context.QueryAsync<UserRole>(sql);
         }
     }
 }

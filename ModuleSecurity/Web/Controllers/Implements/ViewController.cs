@@ -1,4 +1,4 @@
-﻿using Business.Interface;
+﻿using Business.Interfaces;
 using Entity.DTO;
 using Entity.Model.Security;
 using Microsoft.AspNetCore.Mvc;
@@ -35,26 +35,26 @@ namespace Web.Controllers.Implements
         }
 
         [HttpPost]
-        public async Task<ActionResult<View>> Save([FromBody] ViewDto entity)
+        public async Task<ActionResult<View>> Save([FromBody] ViewDto viewDto)
         {
-            if (entity == null)
+            if (viewDto == null)
             {
                 return BadRequest("Entity is null");
             }
 
-            var result = await _viewBusiness.Save(entity);
+            var result = await _viewBusiness.Save(viewDto);
             return CreatedAtAction(nameof(GetById), new { id = result.Id }, result);
         }
 
         [HttpPut("{id}")]
-        public async Task<IActionResult> Update([FromBody] ViewDto entity)
+        public async Task<IActionResult> Update([FromBody] ViewDto viewDto)
         {
-            if (entity == null || entity.Id == 0)
+            if (viewDto == null || viewDto.Id == 0)
             {
                 return BadRequest();
             }
 
-            await _viewBusiness.Update(entity);
+            await _viewBusiness.Update(viewDto);
             return NoContent();
         }
 

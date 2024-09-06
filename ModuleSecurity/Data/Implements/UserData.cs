@@ -1,9 +1,13 @@
-﻿using Data.Interfaces;
+﻿using Data.interfaces;
 using Entity.Context;
-using Entity.DTO;
 using Entity.Model.Security;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
 
 namespace Data.Implements
 {
@@ -25,19 +29,38 @@ namespace Data.Implements
                 throw new Exception("Registro no encontrado");
 
             entity.DeleteAt = DateTime.Parse(DateTime.Today.ToString());
-            context.Users.Update(entity);
+            context.User.Update(entity);
             await context.SaveChangesAsync();
         }
 
+        //public async Task<IEnumerable<DataSelectDto>> GetAllSelect()
+        //{
+        //    var sql = @"SELECT Id, CONCAT(Name, ' - ', Description) AS TextoMostrar
+        //                FROM Role
+        //                WHERE Deleted_at IS NULL AND State = 1
+        //                ORDER BY Id ASC";
+        //    return await context.QueryAsync<DataSelectDto>(sql);
+        //}
+
         public async Task<User> GetById(int id)
         {
-            var sql = @"SELECT * FROM User WHERE Id = @Id ORDER BY Id ASC";
-            return await this.context.QueryFirstOrDefaultAsync<User>(sql, new { Id = id });
+            try
+            {
+                var sql = @"SELECT * FROM User WHERE Id = @Id ORDER BY Id ASC";
+                return await this.context.QueryFirstOrDefaultAsync<User>(sql, new { Id = id });
+
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+
         }
+
 
         public async Task<User> Save(User entity)
         {
-            context.Users.Add(entity);
+            context.User.Add(entity);
             await context.SaveChangesAsync();
             return entity;
         }
@@ -48,50 +71,16 @@ namespace Data.Implements
             await context.SaveChangesAsync();
         }
 
-        public async Task<User> GetByUsername(string username)
+        public async Task<User> GetByName(string name)
         {
-            return await this.context.Users.AsNoTracking().Where(item => item.Username == username).FirstOrDefaultAsync();
+            return await this.context.User.AsNoTracking().Where(item => item.Username == name).FirstOrDefaultAsync();
         }
-
-        //
-
-
-        public async Task<IEnumerable<DataSelectDto>> GetAllSelect()
-        {
-            try
-            {
-                var sql = @"
-                    SELECT Id, CONCAT(Name, ' - ', Description) AS TextoMostrar
-                    FROM User
-                    WHERE Deleted_at IS NULL AND State = 1
-                    ORDER BY Id ASC";
-
-                return await this.context.QueryAsync<DataSelectDto>(sql);
-            }
-            catch (Exception ex)
-            {
-                throw new Exception("Error al obtener la lista de selección de Users", ex);
-            }
-        }
-
-
 
         public async Task<IEnumerable<User>> GetAll()
         {
-            try
-            {
-                var sql = "SELECT * FROM User ORDER BY Id ASC";
-                return await this.context.QueryAsync<User>(sql);
-            }
-            catch (Exception ex)
-            {
-                throw new Exception("Error al obtener todos los Users", ex);
-            }
-        }
-
-        public Task<User> GetByName(string username)
-        {
-            throw new NotImplementedException();
+            var sql = @"SELECT * FROM Role ORDER BY Id ASC";
+            return await this.context.QueryAsync<User>(sql);
         }
     }
 }
+

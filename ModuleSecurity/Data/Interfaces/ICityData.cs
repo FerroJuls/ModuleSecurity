@@ -1,7 +1,6 @@
 ﻿using Entity.DTO;
 using Entity.Model.Security;
-using System.Collections.Generic;
-using System.Threading.Tasks;
+
 
 namespace Data.Interfaces
 {

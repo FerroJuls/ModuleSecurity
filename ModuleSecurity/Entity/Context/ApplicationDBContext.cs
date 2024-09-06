@@ -1,16 +1,17 @@
-﻿using Dapper;
-using Entity.DTO;
-using Entity.Model.Security;
-using Microsoft.EntityFrameworkCore;
-using Microsoft.EntityFrameworkCore.Storage;
-using Microsoft.Extensions.Configuration;
+﻿using Entity.Model.Security;
 using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Linq;
+using System.Net.Security;
+using System.Reflection.Emit;
 using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
+using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Configuration;
+using Dapper;
+using Microsoft.EntityFrameworkCore.Storage;
 using Module = Entity.Model.Security.Module;
 
 namespace Entity.Context
@@ -52,14 +53,6 @@ namespace Entity.Context
             return base.SaveChangesAsync(acceptAllChangesOnSucces, cancellationToken);
         }
 
-        public async Task<IEnumerable<T>> QueryAsync<T>(string text, object parameters = null, int? timeout = null, CommandType? type = null)
-        {
-            using var command = new DapperEFCoreCommand(this, text, parameters, timeout, type, CancellationToken.None);
-            var connection = this.Database.GetDbConnection();
-            return await connection.QueryAsync<T>(command.Definition);
-        }
-
-
         public async Task<T> QueryFirstOrDefaultAsync<T>(string text, object parameters = null, int? timeout = null, CommandType? type = null)
         {
             using var command = new DapperEFCoreCommand(this,
@@ -77,18 +70,24 @@ namespace Entity.Context
             ChangeTracker.DetectChanges();
         }
 
-        // Security
+        public async Task<IEnumerable<T>> QueryAsync<T>(string text, object parameters = null, int? timeout = null, CommandType? type = null)
+        {
+            using var command = new DapperEFCoreCommand(this, text, parameters, timeout, type, CancellationToken.None);
+            var connection = this.Database.GetDbConnection();
+            return await connection.QueryAsync<T>(command.Definition);
+        }
 
-        public DbSet<Person> Persons => Set<Person>();
-        public DbSet<User> Users => Set<User>();
-        public DbSet<UserRole> UserRoles => Set<UserRole>();
-        public DbSet<Role> Roles => Set<Role>();
-        public DbSet<RoleView> RoleViews => Set<RoleView>();
-        public DbSet<View> Views => Set<View>();
-        public DbSet<Module> Modules => Set<Module>();
-        public DbSet<City> Cities => Set<City>();
-        public DbSet<State> States => Set<State>();
+        // Security
+        public DbSet<Personcs> Personcs => Set<Personcs>();
+        public DbSet<Role> Role => Set<Role>();
+        public DbSet<Module> Module => Set<Module>();
+        public DbSet<UserRole> UserRole => Set<UserRole>();
+        public DbSet<RoleView> RoleView => Set<RoleView>();
+        public DbSet<User> User => Set<User>();
+        public DbSet<View> View => Set<View>();
+        public DbSet<City> City => Set<City>();
         public DbSet<Countries> Countries => Set<Countries>();
+        public DbSet<State> State => Set<State>();
 
 
         public readonly struct DapperEFCoreCommand : IDisposable
@@ -105,7 +104,7 @@ namespace Entity.Context
                     transaction,
                     commandTimeout,
                     commandType,
-                    cancellationToken: ct
+                    cancellationToken:ct
                 );
             }
 
@@ -114,4 +113,5 @@ namespace Entity.Context
             public void Dispose() { }
         }
     }
+
 }

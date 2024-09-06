@@ -1,6 +1,5 @@
-﻿using Data.Interfaces;
+﻿using Data.interfaces;
 using Entity.Context;
-using Entity.DTO;
 using Entity.Model.Security;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
@@ -22,80 +21,60 @@ namespace Data.Implements
         {
             var entity = await GetById(id);
             if (entity == null)
-            {
                 throw new Exception("Registro no encontrado");
-            }
-            context.Persons.Update(entity);
+
+            entity.DeleteAt = DateTime.Parse(DateTime.Today.ToString());
+            context.Personcs.Update(entity);
             await context.SaveChangesAsync();
         }
 
-        public async Task<Person> GetById(int id)
+        //public async Task<IEnumerable<DataSelectDto>> GetAllSelect()
+        //{
+        //    var sql = @"SELECT Id, CONCAT(Name, ' - ', Description) AS TextoMostrar
+        //                FROM Role
+        //                WHERE Deleted_at IS NULL AND State = 1
+        //                ORDER BY Id ASC";
+        //    return await context.QueryAsync<DataSelectDto>(sql);
+        //}
+
+        public async Task<Personcs> GetById(int id)
         {
             try
             {
-                var sql = @"SELECT * FROM Person WHERE Id = @Id ORDER BY Id ASC";
-                return await this.context.QueryFirstOrDefaultAsync<Person>(sql, new { Id = id });
+                var sql = @"SELECT * FROM Role WHERE Id = @Id ORDER BY Id ASC";
+                return await this.context.QueryFirstOrDefaultAsync<Personcs>(sql, new { Id = id });
 
             }
             catch (Exception)
             {
                 throw;
             }
+
         }
 
-        public async Task<Person> Save(Person entity)
+
+        public async Task<Personcs> Save(Personcs entity)
         {
-            context.Persons.Add(entity);
+            context.Personcs.Add(entity);
             await context.SaveChangesAsync();
             return entity;
         }
 
-        public async Task Update(Person entity)
+        public async Task Update(Personcs entity)
         {
             context.Entry(entity).State = EntityState.Modified;
             await context.SaveChangesAsync();
         }
 
-        public async Task<Person> GetByName(string first_name)
+        public async Task<Personcs> GetByName(string name)
         {
-            return await this.context.Persons.AsNoTracking().Where(item => item.First_name == first_name).FirstOrDefaultAsync();
+            return await this.context.Personcs.AsNoTracking().Where(item => item.First_name == name).FirstOrDefaultAsync();
         }
 
-        //
-
-
-        public async Task<IEnumerable<DataSelectDto>> GetAllSelect()
+        public async Task<IEnumerable<Personcs>> GetAll()
         {
-            try
-            {
-                var sql = @"
-                    SELECT Id, CONCAT(Name, ' - ', Description) AS TextoMostrar
-                    FROM Person
-                    WHERE Deleted_at IS NULL AND State = 1
-                    ORDER BY Id ASC";
-
-                return await this.context.QueryAsync<DataSelectDto>(sql);
-            }
-            catch (Exception ex)
-            {
-                throw new Exception("Error al obtener la lista de selección de Persons", ex);
-            }
+            var sql = @"SELECT * FROM Role ORDER BY Id ASC";
+            return await this.context.QueryAsync<Personcs>(sql);
         }
-
-
-
-        public async Task<IEnumerable<Person>> GetAll()
-        {
-            try
-            {
-                var sql = "SELECT * FROM Person ORDER BY Id ASC";
-                return await this.context.QueryAsync<Person>(sql);
-            }
-            catch (Exception ex)
-            {
-                throw new Exception("Error al obtener todos los Persons", ex);
-            }
-        }
-
     }
 }

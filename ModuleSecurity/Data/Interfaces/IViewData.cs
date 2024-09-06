@@ -1,15 +1,19 @@
 ﻿using Entity.Model.Security;
 
-namespace Data.Interfaces
+
+namespace Data.interfaces
 {
     public interface IViewData
     {
-        public Task Delete(int id);
-        public Task<View> GetById(int id);
-        public Task<View> Save(View entity);
-        public Task Update(View entity);
-        public Task<IEnumerable<View>> GetAll();
-        public Task<View> GetByName(string name);
-        Task<UserRole> Save(UserRole userRole);
+        Task Delete(int id);
+        Task<View> GetById(int id);
+        Task<View> Save(View entity);
+        Task Update(View entity);
+        Task<IEnumerable<View>> GetAll();
+
+        //Task<IEnumerable<DataSelectDto>> GetAllSelect();
+
+        Task<View> GetByName(string name);
+
     }
 }

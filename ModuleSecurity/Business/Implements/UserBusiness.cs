@@ -1,7 +1,9 @@
-﻿using Business.Interface;
-using Data.Interfaces;
+﻿using Business.Interfaces;
+using Data.interfaces;
 using Entity.DTO;
 using Entity.Model.Security;
+
+
 
 namespace Business.Implements
 {
@@ -21,16 +23,21 @@ namespace Business.Implements
 
         public async Task<IEnumerable<UserDto>> GetAll()
         {
-            IEnumerable<User> users = await this.data.GetAll();
-            var userDtos = users.Select(user => new UserDto
+            IEnumerable<User> user = await this.data.GetAll();
+            var userDtos = user.Select(user => new UserDto
             {
                 Id = user.Id,
                 Username = user.Username,
+   
             });
 
             return userDtos;
         }
 
+        //public async Task<IEnumerable<DataSelectDto>> GetAllSelect()
+        //{
+        //    return await this.data.GetAllSelect();
+        //}
 
         public async Task<UserDto> GetById(int id)
         {
@@ -39,15 +46,20 @@ namespace Business.Implements
 
             userDto.Id = user.Id;
             userDto.Username = user.Username;
-
+         
             return userDto;
+        }
+
+        public Task<User> GetByName(string name)
+        {
+            throw new NotImplementedException();
         }
 
         public User mapearDatos(User user, UserDto entity)
         {
             user.Id = entity.Id;
             user.Username = entity.Username;
-
+      
             return user;
         }
 
@@ -56,6 +68,7 @@ namespace Business.Implements
             User user = new User();
             user.CreateAt = DateTime.Now.AddHours(-5);
             user = this.mapearDatos(user, entity);
+            user.Personcs = null;
 
             return await this.data.Save(user);
         }

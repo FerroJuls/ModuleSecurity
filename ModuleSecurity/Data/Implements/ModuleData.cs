@@ -1,6 +1,5 @@
-﻿using Data.Interfaces;
+﻿using Data.interfaces;
 using Entity.Context;
-using Entity.DTO;
 using Entity.Model.Security;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
@@ -25,20 +24,38 @@ namespace Data.Implements
                 throw new Exception("Registro no encontrado");
 
             entity.DeleteAt = DateTime.Parse(DateTime.Today.ToString());
-            context.Modules.Update(entity);
+            context.Module.Update(entity);
             await context.SaveChangesAsync();
         }
 
+        //public async Task<IEnumerable<DataSelectDto>> GetAllSelect()
+        //{
+        //    var sql = @"SELECT Id, CONCAT(Name, ' - ', Description) AS TextoMostrar
+        //                FROM Role
+        //                WHERE Deleted_at IS NULL AND State = 1
+        //                ORDER BY Id ASC";
+        //    return await context.QueryAsync<DataSelectDto>(sql);
+        //}
 
         public async Task<Module> GetById(int id)
         {
-            var sql = @"SELECT * FROM Module WHERE Id = @Id ORDER BY Id ASC";
-            return await this.context.QueryFirstOrDefaultAsync<Module>(sql, new { Id = id });
+            try
+            {
+                var sql = @"SELECT * FROM Module WHERE Id = @Id ORDER BY Id ASC";
+                return await this.context.QueryFirstOrDefaultAsync<Module>(sql, new { Id = id });
+
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+
         }
+
 
         public async Task<Module> Save(Module entity)
         {
-            context.Modules.Add(entity);
+            context.Module.Add(entity);
             await context.SaveChangesAsync();
             return entity;
         }
@@ -49,46 +66,15 @@ namespace Data.Implements
             await context.SaveChangesAsync();
         }
 
-        public async Task<Module> GetByName(string description)
-        {
-            return await this.context.Modules.AsNoTracking().Where(item => item.Description == description).FirstOrDefaultAsync();
-        }
-
-        //
-
-
-        public async Task<IEnumerable<DataSelectDto>> GetAllSelect()
-        {
-            try
-            {
-                var sql = @"
-                    SELECT Id, CONCAT(Name, ' - ', Description) AS TextoMostrar
-                    FROM Module
-                    WHERE Deleted_at IS NULL AND State = 1
-                    ORDER BY Id ASC";
-
-                return await this.context.QueryAsync<DataSelectDto>(sql);
-            }
-            catch (Exception ex)
-            {
-                throw new Exception("Error al obtener la lista de selección de Modules", ex);
-            }
-        }
-
-
+        //public async Task<Module> GetByName(string name)
+        //{
+        //    return await this.context.Module.AsNoTracking().Where(item => item.Name == name).FirstOrDefaultAsync();
+        //}
 
         public async Task<IEnumerable<Module>> GetAll()
         {
-            try
-            {
-                var sql = "SELECT * FROM Module ORDER BY Id ASC";
-                return await this.context.QueryAsync<Module>(sql);
-            }
-            catch (Exception ex)
-            {
-                throw new Exception("Error al obtener todos los Modules", ex);
-            }
+            var sql = @"SELECT * FROM Module ORDER BY Id ASC";
+            return await this.context.QueryAsync<Module>(sql);
         }
-
     }
 }

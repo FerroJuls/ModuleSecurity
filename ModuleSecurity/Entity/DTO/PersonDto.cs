@@ -11,7 +11,6 @@ namespace Entity.DTO
         public int Id { get; set; }
         public string First_name { get; set; }
         public string Email { get; set; }
-        public int Document { get; set; }
-
+        public string Type_document { get; set; }
     }
 }
