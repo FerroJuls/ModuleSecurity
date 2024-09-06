@@ -11,6 +11,5 @@ namespace Entity.DTO
         public int Id { get; set; }
         public string TextoMostrar { get; set; }
 
-
     }
 }

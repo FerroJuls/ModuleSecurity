@@ -8,13 +8,13 @@
     <EntitySet Name="RoleViewSet" EntityType="DbModel.RoleView" />
     <EntitySet Name="ViewSet" EntityType="DbModel.View" />
     <EntitySet Name="ModuleSet" EntityType="DbModel.Module" />
-    <AssociationSet Name="UserRoleUser" Association="DbModel.UserRoleUser">
-      <End Role="UserRole" EntitySet="UserRoleSet" />
-      <End Role="User" EntitySet="UserSet" />
-    </AssociationSet>
     <AssociationSet Name="UserPerson" Association="DbModel.UserPerson">
       <End Role="User" EntitySet="UserSet" />
       <End Role="Person" EntitySet="PersonSet" />
+    </AssociationSet>
+    <AssociationSet Name="UserRoleUser" Association="DbModel.UserRoleUser">
+      <End Role="UserRole" EntitySet="UserRoleSet" />
+      <End Role="User" EntitySet="UserSet" />
     </AssociationSet>
     <AssociationSet Name="UserRoleRole" Association="DbModel.UserRoleRole">
       <End Role="UserRole" EntitySet="UserRoleSet" />
@@ -124,13 +124,13 @@
     <Property Name="DeleteAt" Type="String" Nullable="false" />
     <Property Name="State" Type="Boolean" Nullable="false" />
   </EntityType>
-  <Association Name="UserRoleUser">
-    <End Type="DbModel.UserRole" Role="UserRole" Multiplicity="*" />
-    <End Type="DbModel.User" Role="User" Multiplicity="1" />
-  </Association>
   <Association Name="UserPerson">
     <End Type="DbModel.User" Role="User" Multiplicity="1" />
     <End Type="DbModel.Person" Role="Person" Multiplicity="1" />
+  </Association>
+  <Association Name="UserRoleUser">
+    <End Type="DbModel.UserRole" Role="UserRole" Multiplicity="*" />
+    <End Type="DbModel.User" Role="User" Multiplicity="1" />
   </Association>
   <Association Name="UserRoleRole">
     <End Type="DbModel.UserRole" Role="UserRole" Multiplicity="*" />

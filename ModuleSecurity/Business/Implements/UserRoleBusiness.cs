@@ -1,10 +1,11 @@
-﻿using Business.Interfaces;
-using Data.interfaces;
+﻿using Business.Interface;
+using Data.Interfaces;
 using Entity.DTO;
 using Entity.Model.Security;
 
 namespace Business.Implements
 {
+
     public class UserRoleBusiness : IUserRoleBusiness
     {
         protected readonly IUserRoleData data;
@@ -21,14 +22,13 @@ namespace Business.Implements
 
         public async Task<IEnumerable<UserRoleDto>> GetAll()
         {
-            IEnumerable<UserRole> userrole = await this.data.GetAll();
-            var userroleDtos = userrole.Select(userrole => new UserRoleDto
+            IEnumerable<UserRole> UserRoles = await this.data.GetAll();
+            var UserRoleDtos = UserRoles.Select(view => new UserRoleDto
             {
-                Id = userrole.Id,
- 
+                Id = view.Id
             });
 
-            return userroleDtos;
+            return UserRoleDtos;
         }
 
         //public async Task<IEnumerable<DataSelectDto>> GetAllSelect()
@@ -38,40 +38,42 @@ namespace Business.Implements
 
         public async Task<UserRoleDto> GetById(int id)
         {
-            UserRole userrole = await this.data.GetById(id);
-            UserRoleDto userroleDto = new UserRoleDto();
+            UserRole userRole = await this.data.GetById(id);
+            UserRoleDto userRoleDto = new UserRoleDto();
 
-            userroleDto.Id = userrole.Id;
-         
-            return userroleDto;
+            userRoleDto.Id = userRoleDto.Id;
+
+            return userRoleDto;
         }
 
-        public UserRole mapearDatos(UserRole userrole, UserRoleDto entity)
+        public UserRole mapearDatos(UserRole userRole, UserRoleDto entity)
         {
-            userrole.Id = entity.Id;
-         
-            return userrole;
+            userRole.Id = entity.Id;
+
+            return userRole;
         }
 
         public async Task<UserRole> Save(UserRoleDto entity)
         {
-            UserRole userrole = new UserRole();
-            userrole.CreateAt = DateTime.Now.AddHours(-5);
-            userrole = this.mapearDatos(userrole, entity);
+            UserRole userRole = new UserRole();
+            userRole.CreateAt = DateTime.Now.AddHours(-5);
+            userRole = this.mapearDatos(userRole, entity);
+            userRole.Role = null;
+            userRole.User = null;
 
-            return await this.data.Save(userrole);
+            return await this.data.Save(userRole);
         }
 
         public async Task Update(UserRoleDto entity)
         {
-            UserRole userrole = await this.data.GetById(entity.Id);
-            if (userrole == null)
+            UserRole userRole = await this.data.GetById(entity.Id);
+            if (userRole == null)
             {
                 throw new Exception("Registro no encontrado");
             }
 
-            userrole = this.mapearDatos(userrole, entity);
-            await this.data.Update(userrole);
+            userRole = this.mapearDatos(userRole, entity);
+            await this.data.Update(userRole);
         }
     }
 }

@@ -8,9 +8,8 @@ namespace Web.Controllers.Interfaces
     {
         Task<IActionResult> Delete(int id);
         Task<ActionResult<PersonDto>> GetById(int id);
-        Task<ActionResult<Personcs>> Save([FromBody] PersonDto personDto);
+        Task<ActionResult<Person>> Save([FromBody] PersonDto personDto);
         Task<IActionResult> Update([FromBody] PersonDto personDto);
         Task<ActionResult<IEnumerable<PersonDto>>> GetAll();
-
     }
 }

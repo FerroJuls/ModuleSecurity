@@ -1,7 +1,8 @@
-﻿using Business.Interfaces;
-using Data.interfaces;
+﻿using Business.Interface;
+using Data.Interfaces;
 using Entity.DTO;
 using Entity.Model.Security;
+using System.Reflection;
 
 namespace Business.Implements
 {
@@ -27,6 +28,7 @@ namespace Business.Implements
                 Id = view.Id,
                 Name = view.Name,
                 Description = view.Description,
+                ModuleId = view.ModuleId,
             });
 
             return viewDtos;
@@ -45,7 +47,8 @@ namespace Business.Implements
             viewDto.Id = view.Id;
             viewDto.Name = view.Name;
             viewDto.Description = view.Description;
-          
+            viewDto.ModuleId = view.ModuleId;
+
             return viewDto;
         }
 
@@ -54,8 +57,8 @@ namespace Business.Implements
             view.Id = entity.Id;
             view.Name = entity.Name;
             view.Description = entity.Description;
-            view.State = entity.State;
-
+            view.ModuleId = entity.ModuleId;
+                
             return view;
         }
 
@@ -82,3 +85,4 @@ namespace Business.Implements
         }
     }
 }
+

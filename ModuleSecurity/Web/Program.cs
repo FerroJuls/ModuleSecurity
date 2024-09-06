@@ -1,19 +1,20 @@
 using Business.Implements;
+using Business.Interface;
 using Business.Interfaces;
 using Data.Implements;
-using Data.interfaces;
 using Data.Interfaces;
 using Entity.Context;
 using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
+
 builder.Services.AddDbContext<ApplicationDBContext>(options =>
 options.UseMySQL(builder.Configuration.GetConnectionString("MySqlConnection")));
 
-builder.Services.AddScoped<IModuleData,ModuleData>();
-builder.Services.AddScoped<IModuleBusiness,ModuleBusiness>();
+builder.Services.AddScoped<IModuleData, ModuleData>();
+builder.Services.AddScoped<IModuleBusiness, ModuleBusiness>();
 
-builder.Services.AddScoped<ICityData,CityData>();
+builder.Services.AddScoped<ICityData, CityData>();
 builder.Services.AddScoped<ICityBusiness, CityBusiness>();
 
 builder.Services.AddScoped<ICountriesData, CountriesData>();
@@ -41,6 +42,7 @@ builder.Services.AddScoped<IViewData, ViewData>();
 builder.Services.AddScoped<IViewBusiness, ViewBusiness>();
 
 
+
 // Add services to the container.
 
 builder.Services.AddControllers();
@@ -49,7 +51,6 @@ builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
 var app = builder.Build();
-
 
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())

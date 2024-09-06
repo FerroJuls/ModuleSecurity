@@ -12,12 +12,12 @@ namespace Entity.Model.Security
         public string Username { get; set; }
         public string Password { get; set; }
         public DateTime CreateAt { get; set; }
-        public string UpdateAt { get; set; }
+        public DateTime UpdateAt { get; set; }
         public DateTime DeleteAt { get; set; }
         public bool State { get; set; }
 
-        //relacion con persona
+        // Relación con Person
         public int PersonId { get; set; }
-        public Personcs Personcs { get; set; }
+        public Person Person { get; set; }
     }
 }

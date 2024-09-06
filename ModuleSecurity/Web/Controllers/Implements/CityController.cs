@@ -1,4 +1,5 @@
-﻿using Business.Interfaces;
+﻿using Business.Interface;
+using Data.Implements;
 using Entity.DTO;
 using Entity.Model.Security;
 using Microsoft.AspNetCore.Mvc;
@@ -35,26 +36,26 @@ namespace Web.Controllers.Implements
         }
 
         [HttpPost]
-        public async Task<ActionResult<City>> Save([FromBody] CityDto cityDto)
+        public async Task<ActionResult<City>> Save([FromBody] CityDto entity)
         {
-            if (cityDto == null)
+            if (entity == null)
             {
                 return BadRequest("Entity is null");
             }
 
-            var result = await _cityBusiness.Save(cityDto);
+            var result = await _cityBusiness.Save(entity);
             return CreatedAtAction(nameof(GetById), new { id = result.Id }, result);
         }
 
         [HttpPut("{id}")]
-        public async Task<IActionResult> Update([FromBody] CityDto cityDto)
+        public async Task<IActionResult> Update([FromBody] CityDto entity)
         {
-            if (cityDto == null || cityDto.Id == 0)
+            if (entity == null || entity.Id == 0)
             {
                 return BadRequest();
             }
 
-            await _cityBusiness.Update(cityDto);
+            await _cityBusiness.Update(entity);
             return NoContent();
         }
 

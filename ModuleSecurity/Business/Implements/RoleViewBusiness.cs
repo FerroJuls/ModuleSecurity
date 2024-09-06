@@ -1,5 +1,5 @@
-﻿using Business.Interfaces;
-using Data.interfaces;
+﻿using Business.Interface;
+using Data.Interfaces;
 using Entity.DTO;
 using Entity.Model.Security;
 
@@ -21,56 +21,52 @@ namespace Business.Implements
 
         public async Task<IEnumerable<RoleViewDto>> GetAll()
         {
-            IEnumerable<RoleView> roleview = await this.data.GetAll();
-            var roleviewDtos = roleview.Select(roleview => new RoleViewDto
+            IEnumerable<RoleView> roleViews = await this.data.GetAll();
+            var roleViewDtos = roleViews.Select(roleView => new RoleViewDto
             {
-                Id = roleview.Id,
+                Id = roleView.Id,
             });
 
-            return roleviewDtos;
+            return roleViewDtos;
         }
 
-        //public async Task<IEnumerable<DataSelectDto>> GetAllSelect()
-        //{
-        //    return await this.data.GetAllSelect();
-        //}
 
         public async Task<RoleViewDto> GetById(int id)
         {
-            RoleView roleview = await this.data.GetById(id);
-            RoleViewDto roleviewDto = new RoleViewDto();
+            RoleView roleView = await this.data.GetById(id);
+            RoleViewDto roleViewDto = new RoleViewDto();
 
-            roleviewDto.Id = roleview.Id;
-         
-            return roleviewDto;
+            roleViewDto.Id = roleView.Id;
+
+            return roleViewDto;
         }
 
-        public RoleView mapearDatos(RoleView roleview, RoleViewDto entity)
+        public RoleView mapearDatos(RoleView roleView, RoleViewDto entity)
         {
-            roleview.Id = entity.Id;
-        
-            return roleview;
+            roleView.Id = entity.Id;
+
+            return roleView;
         }
 
         public async Task<RoleView> Save(RoleViewDto entity)
         {
-            RoleView roleview = new RoleView();
-            roleview.CreateAt = DateTime.Now.AddHours(-5);
-            roleview = this.mapearDatos(roleview, entity);
- 
-            return await this.data.Save(roleview);
+            RoleView roleView = new RoleView();
+            roleView.CreateAt = DateTime.Now.AddHours(-5);
+            roleView = this.mapearDatos(roleView, entity);
+
+            return await this.data.Save(roleView);
         }
 
         public async Task Update(RoleViewDto entity)
         {
-            RoleView roleview = await this.data.GetById(entity.Id);
-            if (roleview == null)
+            RoleView roleView = await this.data.GetById(entity.Id);
+            if (roleView == null)
             {
                 throw new Exception("Registro no encontrado");
             }
 
-            roleview = this.mapearDatos(roleview, entity);
-            await this.data.Update(roleview);
+            roleView = this.mapearDatos(roleView, entity);
+            await this.data.Update(roleView);
         }
     }
 }

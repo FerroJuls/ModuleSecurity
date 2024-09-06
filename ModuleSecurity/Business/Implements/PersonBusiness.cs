@@ -1,11 +1,11 @@
-﻿using Business.Interfaces;
-using Data.interfaces;
+﻿using Business.Interface;
+using Data.Interfaces;
 using Entity.DTO;
 using Entity.Model.Security;
 
 namespace Business.Implements
 {
-    public class PersonBusiness :  IPersonBusiness
+    public class PersonBusiness : IPersonBusiness
     {
         protected readonly IPersonData data;
 
@@ -21,54 +21,60 @@ namespace Business.Implements
 
         public async Task<IEnumerable<PersonDto>> GetAll()
         {
-            IEnumerable<Personcs> person = await this.data.GetAll();
-            var personDtos = person.Select(person => new PersonDto
+            IEnumerable<Person> people = await this.data.GetAll();
+            var personDtos = people.Select(person => new PersonDto
             {
                 Id = person.Id,
                 First_name = person.First_name,
+                Last_name = person.Last_name,
+                Addres = person.Addres,
                 Email = person.Email,
                 Type_document = person.Type_document,
-            });
+                Document = person.Document,
+                Birth_of_date = person.Birth_of_date,
+                Phone = person.Phone,
+
+    });
 
             return personDtos;
         }
 
-        //public async Task<IEnumerable<DataSelectDto>> GetAllSelect()
-        //{
-        //    return await this.data.GetAllSelect();
-        //}
-
         public async Task<PersonDto> GetById(int id)
         {
-            Personcs person = await this.data.GetById(id);
+            Person person = await this.data.GetById(id);
             PersonDto personDto = new PersonDto();
 
             personDto.Id = person.Id;
             personDto.First_name = person.First_name;
+            personDto.Last_name = person.Last_name;
+            personDto.Addres = person.Addres;
             personDto.Email = person.Email;
             personDto.Type_document = person.Type_document;
+            personDto.Document = person.Document;
+            personDto.Birth_of_date = person.Birth_of_date;
+            personDto.Phone = person.Phone;
 
             return personDto;
         }
 
-        public Task<Personcs> GetByName(string name)
-        {
-            throw new NotImplementedException();
-        }
-
-        public Personcs mapearDatos(Personcs person, PersonDto entity)
+        public Person mapearDatos(Person person, PersonDto entity)
         {
             person.Id = entity.Id;
             person.First_name = entity.First_name;
+            person.Last_name = entity.Last_name;
+            person.Addres = entity.Addres;
             person.Email = entity.Email;
             person.Type_document = entity.Type_document;
+            person.Document = entity.Document;
+            person.Birth_of_date = entity.Birth_of_date;
+            person.Phone = entity.Phone;
 
             return person;
         }
 
-        public async Task<Personcs> Save(PersonDto entity)
+        public async Task<Person> Save(PersonDto entity)
         {
-            Personcs person = new Personcs();
+            Person person = new Person();
             person.CreateAt = DateTime.Now.AddHours(-5);
             person = this.mapearDatos(person, entity);
 
@@ -77,7 +83,7 @@ namespace Business.Implements
 
         public async Task Update(PersonDto entity)
         {
-            Personcs person = await this.data.GetById(entity.Id);
+            Person person = await this.data.GetById(entity.Id);
             if (person == null)
             {
                 throw new Exception("Registro no encontrado");

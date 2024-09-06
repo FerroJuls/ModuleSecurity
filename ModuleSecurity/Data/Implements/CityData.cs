@@ -25,19 +25,19 @@ namespace Data.Implements
                 throw new Exception("Registro no encontrado");
 
             entity.DeleteAt = DateTime.Parse(DateTime.Today.ToString());
-            context.City.Update(entity);
+            context.Cities.Update(entity);
             await context.SaveChangesAsync();
         }
 
         public async Task<City> GetById(int id)
         {
-            var sql = @"SELECT * FROM City WHERE Id = @Id ORDER BY Id ASC";
+            var sql = @"SELECT * FROM Cities WHERE Id = @Id ORDER BY Id ASC";
             return await this.context.QueryFirstOrDefaultAsync<City>(sql, new { Id = id });
         }
 
         public async Task<City> Save(City entity)
         {
-            context.City.Add(entity);
+            context.Cities.Add(entity);
             await context.SaveChangesAsync();
             return entity;
         }
@@ -50,7 +50,7 @@ namespace Data.Implements
 
         public async Task<City> GetByName(string name)
         {
-            return await this.context.City.AsNoTracking().Where(item => item.Name == name).FirstOrDefaultAsync();
+            return await this.context.Cities.AsNoTracking().Where(item => item.Name == name).FirstOrDefaultAsync();
         }
 
         public async Task<IEnumerable<DataSelectDto>> GetAllSelect()
@@ -59,7 +59,7 @@ namespace Data.Implements
             {
                 var sql = @"
                     SELECT Id, CONCAT(Name) AS TextoMostrar
-                    FROM City
+                    FROM Cities
                     WHERE Deleted_at IS NULL AND State = 1
                     ORDER BY Id ASC";
 
@@ -75,7 +75,7 @@ namespace Data.Implements
         {
             try
             {
-                var sql = "SELECT * FROM City ORDER BY Id ASC";
+                var sql = "SELECT * FROM Cities ORDER BY Id ASC";
                 return await this.context.QueryAsync<City>(sql);
             }
             catch (Exception ex)

@@ -2,6 +2,7 @@
 using Data.Interfaces;
 using Entity.DTO;
 using Entity.Model.Security;
+using System.Diagnostics.Metrics;
 
 namespace Business.Implements
 {
@@ -33,13 +34,13 @@ namespace Business.Implements
 
         public async Task<CountriesDto> GetById(int id)
         {
-            Countries countries = await this.data.GetById(id);
-            CountriesDto countriesDto = new CountriesDto
+            Countries country = await this.data.GetById(id);
+            CountriesDto countryDto = new CountriesDto
             {
-                Id = countries.Id,
-                Name = countries.Name,
+                Id = country.Id,
+                Name = country.Name,
             };
-            return countriesDto;
+            return countryDto;
         }
 
         public Countries mapearDatos(Countries country, CountriesDto entity)

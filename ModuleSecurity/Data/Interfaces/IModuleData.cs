@@ -1,20 +1,14 @@
-﻿
+﻿using Entity.Model.Security;
 
-using Entity.Model.Security;
-
-namespace Data.interfaces
+namespace Data.Interfaces
 {
     public interface IModuleData
     {
-        Task Delete(int id);
-        Task<Module> GetById(int id);
-        Task<Module> Save(Module entity);
-        Task Update(Module entity);
-
-        Task<IEnumerable<Module>> GetAll();
-
-        //Task<IEnumerable<DataSelectDto>> GetAllSelect();
-
-        //Task<Module> GetByName(string name);
+        public Task Delete(int id);
+        public Task<Module> GetById(int id);
+        public Task<Module> Save(Module entity);
+        public Task Update(Module entity);
+        public Task<IEnumerable<Module>> GetAll();
+        public Task<Module> GetByName(string description);
     }
 }

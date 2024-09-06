@@ -1,4 +1,4 @@
-﻿using Business.Interfaces;
+﻿using Business.Interface;
 using Data.Interfaces;
 using Entity.DTO;
 using Entity.Model.Security;

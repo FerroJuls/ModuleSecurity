@@ -1,13 +1,9 @@
-﻿using Data.interfaces;
+﻿using Data.Interfaces;
 using Entity.Context;
+using Entity.DTO;
 using Entity.Model.Security;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Data.Implements
 {
@@ -29,38 +25,19 @@ namespace Data.Implements
                 throw new Exception("Registro no encontrado");
 
             entity.DeleteAt = DateTime.Parse(DateTime.Today.ToString());
-            context.View.Update(entity);
+            context.Views.Update(entity);
             await context.SaveChangesAsync();
         }
 
-        //public async Task<IEnumerable<DataSelectDto>> GetAllSelect()
-        //{
-        //    var sql = @"SELECT Id, CONCAT(Name, ' - ', Description) AS TextoMostrar
-        //                FROM Role
-        //                WHERE Deleted_at IS NULL AND State = 1
-        //                ORDER BY Id ASC";
-        //    return await context.QueryAsync<DataSelectDto>(sql);
-        //}
-
         public async Task<View> GetById(int id)
         {
-            try
-            {
-                var sql = @"SELECT * FROM Role WHERE Id = @Id ORDER BY Id ASC";
-                return await this.context.QueryFirstOrDefaultAsync<View>(sql, new { Id = id });
-
-            }
-            catch (Exception)
-            {
-                throw;
-            }
-
+            var sql = @"SELECT * FROM Views WHERE Id = @Id ORDER BY Id ASC";
+            return await this.context.QueryFirstOrDefaultAsync<View>(sql, new { Id = id });
         }
-
 
         public async Task<View> Save(View entity)
         {
-            context.View.Add(entity);
+            context.Views.Add(entity);
             await context.SaveChangesAsync();
             return entity;
         }
@@ -73,13 +50,48 @@ namespace Data.Implements
 
         public async Task<View> GetByName(string name)
         {
-            return await this.context.View.AsNoTracking().Where(item => item.Name == name).FirstOrDefaultAsync();
+            return await this.context.Views.AsNoTracking().Where(item => item.Name == name).FirstOrDefaultAsync();
         }
+
+        //
+
+
+        public async Task<IEnumerable<DataSelectDto>> GetAllSelect()
+        {
+            try
+            {
+                var sql = @"
+                    SELECT Id, CONCAT(Name, ' - ', Description) AS TextoMostrar
+                    FROM Views
+                    WHERE Deleted_at IS NULL AND State = 1
+                    ORDER BY Id ASC";
+
+                return await this.context.QueryAsync<DataSelectDto>(sql);
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("Error al obtener la lista de selección de Views", ex);
+            }
+        }
+
+
 
         public async Task<IEnumerable<View>> GetAll()
         {
-            var sql = @"SELECT * FROM Role ORDER BY Id ASC";
-            return await this.context.QueryAsync<View>(sql);
+            try
+            {
+                var sql = "SELECT * FROM Views ORDER BY Id ASC";
+                return await this.context.QueryAsync<View>(sql);
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("Error al obtener todos los Views", ex);
+            }
+        }
+
+        public Task<UserRole> Save(UserRole userRole)
+        {
+            throw new NotImplementedException();
         }
     }
 }

@@ -1,5 +1,4 @@
-﻿
-using Data.Interfaces;
+﻿using Data.Interfaces;
 using Entity.Context;
 using Entity.DTO;
 using Entity.Model.Security;
@@ -33,7 +32,7 @@ namespace Data.Implements
 
         public async Task<Countries> GetById(int id)
         {
-            var sql = @"SELECT * FROM Country WHERE Id = @Id ORDER BY Id ASC";
+            var sql = @"SELECT * FROM Countries WHERE Id = @Id ORDER BY Id ASC";
             return await this.context.QueryFirstOrDefaultAsync<Countries>(sql, new { Id = id });
         }
 
@@ -61,7 +60,7 @@ namespace Data.Implements
             {
                 var sql = @"
                     SELECT Id, CONCAT(Name) AS TextoMostrar
-                    FROM Country
+                    FROM Countries
                     WHERE Deleted_at IS NULL AND State = 1
                     ORDER BY Id ASC";
 

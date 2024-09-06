@@ -4,16 +4,16 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="daff90418889414eb5f458d3b1406857" Name="Diagram1" ZoomLevel="113" >
+      <Diagram DiagramId="daff90418889414eb5f458d3b1406857" Name="Diagram1" ZoomLevel="181" >
         <EntityTypeShape EntityType="DbModel.Person" Width="1.5" PointX="0.5" PointY="1.625" />
-        <EntityTypeShape EntityType="DbModel.User" Width="1.5" PointX="2.375" PointY="1.625" />
-        <EntityTypeShape EntityType="DbModel.UserRole" Width="1.5" PointX="4.5" PointY="1.625" />
-        <EntityTypeShape EntityType="DbModel.Role" Width="1.5" PointX="6.375" PointY="1.625" />
-        <EntityTypeShape EntityType="DbModel.RoleView" Width="1.5" PointX="8.25" PointY="1.625" />
-        <EntityTypeShape EntityType="DbModel.View" Width="1.5" PointX="10.375" PointY="1.625" />
-        <EntityTypeShape EntityType="DbModel.Module" Width="1.5" PointX="12.5" PointY="1.625" />
-        <AssociationConnector Association="DbModel.UserRoleUser" />
+        <EntityTypeShape EntityType="DbModel.User" Width="1.5" PointX="2.625" PointY="1.625" />
+        <EntityTypeShape EntityType="DbModel.UserRole" Width="1.5" PointX="4.875" PointY="1.625" />
+        <EntityTypeShape EntityType="DbModel.Role" Width="1.5" PointX="7.125" PointY="1.625" />
+        <EntityTypeShape EntityType="DbModel.RoleView" Width="1.5" PointX="9.375" PointY="1.625" />
+        <EntityTypeShape EntityType="DbModel.View" Width="1.5" PointX="11.625" PointY="1.625" />
+        <EntityTypeShape EntityType="DbModel.Module" Width="1.5" PointX="13.875" PointY="1.625" />
         <AssociationConnector Association="DbModel.UserPerson" />
+        <AssociationConnector Association="DbModel.UserRoleUser" />
         <AssociationConnector Association="DbModel.UserRoleRole" />
         <AssociationConnector Association="DbModel.RoleViewRole" />
         <AssociationConnector Association="DbModel.RoleViewView" />
