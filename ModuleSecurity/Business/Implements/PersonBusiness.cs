@@ -33,8 +33,9 @@ namespace Business.Implements
                 Document = person.Document,
                 Birth_of_date = person.Birth_of_date,
                 Phone = person.Phone,
+                State = person.State,
 
-    });
+            });
 
             return personDtos;
         }
@@ -53,6 +54,7 @@ namespace Business.Implements
             personDto.Document = person.Document;
             personDto.Birth_of_date = person.Birth_of_date;
             personDto.Phone = person.Phone;
+            personDto.State = person.State;
 
             return personDto;
         }
@@ -68,6 +70,7 @@ namespace Business.Implements
             person.Document = entity.Document;
             person.Birth_of_date = entity.Birth_of_date;
             person.Phone = entity.Phone;
+            person.State = entity.State;
 
             return person;
         }

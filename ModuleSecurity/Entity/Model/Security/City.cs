@@ -8,5 +8,9 @@
         public DateTime UpdateAt { get; set; }
         public DateTime DeleteAt { get; set; }
         public bool State { get; set; }
+
+        // Relación con State
+        public int StateId { get; set; }
+        public State state { get; set; }
     }
 }

@@ -22,10 +22,10 @@ namespace Data.Implements
         {
             var entity = await GetById(id);
             if (entity == null)
+            {
                 throw new Exception("Registro no encontrado");
-
-            entity.DeleteAt = DateTime.Parse(DateTime.Today.ToString());
-            context.Cities.Update(entity);
+            }
+            context.Cities.Remove(entity);
             await context.SaveChangesAsync();
         }
 
@@ -75,13 +75,18 @@ namespace Data.Implements
         {
             try
             {
-                var sql = "SELECT * FROM Cities ORDER BY Id ASC";
+                var sql = "SELECT * FROM Cities WHERE State=true ORDER BY Id ASC";
                 return await this.context.QueryAsync<City>(sql);
             }
             catch (Exception ex)
             {
                 throw new Exception("Error al obtener todas las Cities", ex);
             }
+        }
+
+        public Task Delete(City city)
+        {
+            throw new NotImplementedException();
         }
     }
 }

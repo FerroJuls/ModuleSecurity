@@ -1,105 +1,12 @@
 {
   "Version": 1,
   "WorkspaceRootPath": "C:\\Users\\SENA\\Documents\\JulianADSO2694667\\ModuleSecurity\\ModuleSecurity\\",
-  "Documents": [
-    {
-      "AbsoluteMoniker": "D:0:0:{CC2B26E1-3C49-4102-A89A-9C7A1DBDCEE5}|Data\\Data.csproj|c:\\users\\sena\\documents\\julianadso2694667\\modulesecurity\\modulesecurity\\data\\implements\\viewdata.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{CC2B26E1-3C49-4102-A89A-9C7A1DBDCEE5}|Data\\Data.csproj|solutionrelative:data\\implements\\viewdata.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{C280230A-ABF6-4A75-94A0-927D9AEFE052}|Entity\\Entity.csproj|c:\\users\\sena\\documents\\julianadso2694667\\modulesecurity\\modulesecurity\\entity\\model\\security\\module.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{C280230A-ABF6-4A75-94A0-927D9AEFE052}|Entity\\Entity.csproj|solutionrelative:entity\\model\\security\\module.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{C280230A-ABF6-4A75-94A0-927D9AEFE052}|Entity\\Entity.csproj|c:\\users\\sena\\documents\\julianadso2694667\\modulesecurity\\modulesecurity\\entity\\model\\security\\view.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{C280230A-ABF6-4A75-94A0-927D9AEFE052}|Entity\\Entity.csproj|solutionrelative:entity\\model\\security\\view.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{C59C820D-B25C-4B90-BA09-24DCB94AE033}|Web\\Web.csproj|c:\\users\\sena\\documents\\julianadso2694667\\modulesecurity\\modulesecurity\\web\\controllers\\implements\\viewcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{C59C820D-B25C-4B90-BA09-24DCB94AE033}|Web\\Web.csproj|solutionrelative:web\\controllers\\implements\\viewcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{7F469AE2-C74D-4DED-8F36-45AA4DA47A13}|Business\\Business.csproj|c:\\users\\sena\\documents\\julianadso2694667\\modulesecurity\\modulesecurity\\business\\implements\\viewbusiness.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{7F469AE2-C74D-4DED-8F36-45AA4DA47A13}|Business\\Business.csproj|solutionrelative:business\\implements\\viewbusiness.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    }
-  ],
+  "Documents": [],
   "DocumentGroupContainers": [
     {
       "Orientation": 0,
       "VerticalTabListWidth": 256,
-      "DocumentGroups": [
-        {
-          "DockedWidth": 200,
-          "SelectedChildIndex": 2,
-          "Children": [
-            {
-              "$type": "Document",
-              "DocumentIndex": 1,
-              "Title": "Module.cs",
-              "DocumentMoniker": "C:\\Users\\SENA\\Documents\\JulianADSO2694667\\ModuleSecurity\\ModuleSecurity\\Entity\\Model\\Security\\Module.cs",
-              "RelativeDocumentMoniker": "Entity\\Model\\Security\\Module.cs",
-              "ToolTip": "C:\\Users\\SENA\\Documents\\JulianADSO2694667\\ModuleSecurity\\ModuleSecurity\\Entity\\Model\\Security\\Module.cs",
-              "RelativeToolTip": "Entity\\Model\\Security\\Module.cs",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-09-06T22:40:06.932Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 2,
-              "Title": "View.cs",
-              "DocumentMoniker": "C:\\Users\\SENA\\Documents\\JulianADSO2694667\\ModuleSecurity\\ModuleSecurity\\Entity\\Model\\Security\\View.cs",
-              "RelativeDocumentMoniker": "Entity\\Model\\Security\\View.cs",
-              "ToolTip": "C:\\Users\\SENA\\Documents\\JulianADSO2694667\\ModuleSecurity\\ModuleSecurity\\Entity\\Model\\Security\\View.cs",
-              "RelativeToolTip": "Entity\\Model\\Security\\View.cs",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAABUAAAAcAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-09-06T22:39:39.627Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 0,
-              "Title": "ViewData.cs",
-              "DocumentMoniker": "C:\\Users\\SENA\\Documents\\JulianADSO2694667\\ModuleSecurity\\ModuleSecurity\\Data\\Implements\\ViewData.cs",
-              "RelativeDocumentMoniker": "Data\\Implements\\ViewData.cs",
-              "ToolTip": "C:\\Users\\SENA\\Documents\\JulianADSO2694667\\ModuleSecurity\\ModuleSecurity\\Data\\Implements\\ViewData.cs",
-              "RelativeToolTip": "Data\\Implements\\ViewData.cs",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAqwAkAAAAcAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-09-06T22:39:09.108Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 4,
-              "Title": "ViewBusiness.cs",
-              "DocumentMoniker": "C:\\Users\\SENA\\Documents\\JulianADSO2694667\\ModuleSecurity\\ModuleSecurity\\Business\\Implements\\ViewBusiness.cs",
-              "RelativeDocumentMoniker": "Business\\Implements\\ViewBusiness.cs",
-              "ToolTip": "C:\\Users\\SENA\\Documents\\JulianADSO2694667\\ModuleSecurity\\ModuleSecurity\\Business\\Implements\\ViewBusiness.cs",
-              "RelativeToolTip": "Business\\Implements\\ViewBusiness.cs",
-              "ViewState": "AQIAADUAAAAAAAAAAAAIwAAAAAAAAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-09-06T22:38:33.519Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 3,
-              "Title": "ViewController.cs",
-              "DocumentMoniker": "C:\\Users\\SENA\\Documents\\JulianADSO2694667\\ModuleSecurity\\ModuleSecurity\\Web\\Controllers\\Implements\\ViewController.cs",
-              "RelativeDocumentMoniker": "Web\\Controllers\\Implements\\ViewController.cs",
-              "ToolTip": "C:\\Users\\SENA\\Documents\\JulianADSO2694667\\ModuleSecurity\\ModuleSecurity\\Web\\Controllers\\Implements\\ViewController.cs",
-              "RelativeToolTip": "Web\\Controllers\\Implements\\ViewController.cs",
-              "ViewState": "AQIAACwAAAAAAAAAAAAIwAAAAAAAAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-09-06T22:38:31.553Z",
-              "EditorCaption": ""
-            }
-          ]
-        }
-      ]
+      "DocumentGroups": []
     }
   ]
 }

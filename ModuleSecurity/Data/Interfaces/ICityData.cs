@@ -14,5 +14,6 @@ namespace Data.Interfaces
         Task Delete(int id);
         Task<IEnumerable<City>> GetAll();
         Task<IEnumerable<DataSelectDto>> GetAllSelect();
+        Task Delete(City city);
     }
 }

@@ -22,10 +22,10 @@ namespace Data.Implements
         {
             var entity = await GetById(id);
             if (entity == null)
+            {
                 throw new Exception("Registro no encontrado");
-
-            entity.DeleteAt = DateTime.Parse(DateTime.Today.ToString());
-            context.Modules.Update(entity);
+            }
+            context.Modules.Remove(entity);
             await context.SaveChangesAsync();
         }
 
@@ -81,7 +81,7 @@ namespace Data.Implements
         {
             try
             {
-                var sql = "SELECT * FROM Modules ORDER BY Id ASC";
+                var sql = "SELECT * FROM Modules WHERE State=true ORDER BY Id ASC";
                 return await this.context.QueryAsync<Module>(sql);
             }
             catch (Exception ex)

@@ -15,7 +15,9 @@ namespace Entity.Model.Security
         public bool State { get; set; }
 
         // Relación con Role y View
-        public Role IdRole { get; set; }
-        public View IdView { get; set; }
+        public int RoleId { get; set; }
+        public Role Role { get; set; }
+        public int ViewId { get; set; }
+        public View View { get; set; }
     }
 }

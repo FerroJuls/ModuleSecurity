@@ -14,5 +14,9 @@ namespace Entity.Model.Security
         public DateTime UpdateAt { get; set; }
         public DateTime DeleteAt { get; set; }
         public bool state { get; set; }
+
+        // Relación con Countries
+        public int CountriesId { get; set; }
+        public Countries Countries { get; set; }
     }
 }

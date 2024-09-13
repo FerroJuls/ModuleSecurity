@@ -22,5 +22,9 @@ namespace Entity.Model.Security
         public string Phone { get; set; }
         public bool State { get; set; }
 
+        // Relación con City
+        public int CityId { get; set; }
+        public City City { get; set; }
+
     }
 }

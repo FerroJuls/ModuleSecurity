@@ -59,7 +59,6 @@ namespace Entity.Context
             return await connection.QueryAsync<T>(command.Definition);
         }
 
-
         public async Task<T> QueryFirstOrDefaultAsync<T>(string text, object parameters = null, int? timeout = null, CommandType? type = null)
         {
             using var command = new DapperEFCoreCommand(this,

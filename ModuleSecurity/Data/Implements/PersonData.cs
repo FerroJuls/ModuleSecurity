@@ -25,7 +25,7 @@ namespace Data.Implements
             {
                 throw new Exception("Registro no encontrado");
             }
-            context.Persons.Update(entity);
+            context.Persons.Remove(entity);
             await context.SaveChangesAsync();
         }
 
@@ -88,7 +88,7 @@ namespace Data.Implements
         {
             try
             {
-                var sql = "SELECT * FROM Persons ORDER BY Id ASC";
+                var sql = "SELECT * FROM Persons WHERE Id = @Id ORDER BY Id ASC";
                 return await this.context.QueryAsync<Person>(sql);
             }
             catch (Exception ex)

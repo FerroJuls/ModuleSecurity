@@ -26,6 +26,7 @@ namespace Business.Implements
             {
                 Id = module.Id,
                 Description = module.Description,
+                State = module.State,
             });
 
             return moduleDtos;
@@ -39,6 +40,7 @@ namespace Business.Implements
 
             moduleDto.Id = module.Id;
             moduleDto.Description = module.Description;
+            moduleDto.State = module.State;
 
             return moduleDto;
         }
@@ -47,6 +49,7 @@ namespace Business.Implements
         {
             module.Id = entity.Id;
             module.Description = entity.Description;
+            module.State = entity.State;
 
             return module;
         }

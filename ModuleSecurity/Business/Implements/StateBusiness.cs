@@ -26,6 +26,9 @@ namespace Business.Implements
             {
                 Id = state.Id,
                 Name = state.Name,
+                state = state.state,
+                CountriesId = state.CountriesId,
+                Countries = state.Countries,
             });
 
             return stateDtos;
@@ -34,11 +37,14 @@ namespace Business.Implements
         public async Task<StateDto> GetById(int id)
         {
             State state = await this.data.GetById(id);
-            StateDto stateDto = new StateDto
-            {
-                Id = state.Id,
-                Name = state.Name,
-            };
+            StateDto stateDto = new StateDto();
+
+            stateDto.Id = state.Id;
+            stateDto.Name = state.Name;
+            stateDto.state = state.state;
+            stateDto.CountriesId = state.CountriesId;
+            stateDto.Countries = state.Countries;
+
 
             return stateDto;
         }
@@ -47,6 +53,10 @@ namespace Business.Implements
         {
             state.Id = entity.Id;
             state.Name = entity.Name;
+            state.state = entity.state;
+            state.CountriesId = entity.CountriesId;
+            state.Countries = entity.Countries;
+
 
             return state;
         }
