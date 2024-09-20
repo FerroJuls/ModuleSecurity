@@ -31,12 +31,12 @@ namespace Entity.Migrations
                     b.Property<DateTime>("DeleteAt")
                         .HasColumnType("datetime(6)");
 
+                    b.Property<bool>("Estado")
+                        .HasColumnType("tinyint(1)");
+
                     b.Property<string>("Name")
                         .IsRequired()
                         .HasColumnType("longtext");
-
-                    b.Property<bool>("State")
-                        .HasColumnType("tinyint(1)");
 
                     b.Property<int>("StateId")
                         .HasColumnType("int");

@@ -33,18 +33,27 @@ namespace Data.Implements
         {
             try
             {
-                var sql = @"SELECT * FROM Persons WHERE Id = @Id ORDER BY Id ASC";
-                return await this.context.QueryFirstOrDefaultAsync<Person>(sql, new { Id = id });
-
+                return await context.Persons
+                    .Include(p => p.City)
+                    .FirstOrDefaultAsync(p => p.Id == id);
             }
-            catch (Exception)
+            catch (Exception ex)
             {
-                throw;
+                throw new Exception("Error al obtener el State por Id", ex);
             }
         }
 
         public async Task<Person> Save(Person entity)
         {
+            if (entity.City != null)
+            {
+                var existingCity = await context.Cities.FindAsync(entity.City.Id);
+                if (existingCity != null)
+                {
+                    entity.City = existingCity;
+                }
+            }
+
             context.Persons.Add(entity);
             await context.SaveChangesAsync();
             return entity;
@@ -52,7 +61,19 @@ namespace Data.Implements
 
         public async Task Update(Person entity)
         {
+            if (entity.City != null)
+            {
+                var existingCity = await context.Cities.FindAsync(entity.City.Id);
+
+                if (existingCity != null)
+                {
+                    context.Entry(existingCity).State = EntityState.Unchanged;
+                    entity.City = existingCity;
+                }
+            }
+
             context.Entry(entity).State = EntityState.Modified;
+
             await context.SaveChangesAsync();
         }
 
@@ -82,18 +103,19 @@ namespace Data.Implements
             }
         }
 
-
-
         public async Task<IEnumerable<Person>> GetAll()
         {
             try
             {
-                var sql = "SELECT * FROM Persons WHERE Id = @Id ORDER BY Id ASC";
-                return await this.context.QueryAsync<Person>(sql);
+                return await context.Persons
+                    .Where(p => p.State == true)
+                    .OrderBy(p => p.Id)
+                    .Include(p => p.City)
+                    .ToListAsync();
             }
             catch (Exception ex)
             {
-                throw new Exception("Error al obtener todos los Persons", ex);
+                throw new Exception("Error al obtener todos las personas", ex);
             }
         }
 

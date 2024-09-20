@@ -1,4 +1,5 @@
-﻿using Data.Interfaces;
+﻿
+using Data.Interfaces;
 using Entity.Context;
 using Entity.DTO;
 using Entity.Model.Security;
@@ -31,12 +32,29 @@ namespace Data.Implements
 
         public async Task<City> GetById(int id)
         {
-            var sql = @"SELECT * FROM Cities WHERE Id = @Id ORDER BY Id ASC";
-            return await this.context.QueryFirstOrDefaultAsync<City>(sql, new { Id = id });
+            try
+            {
+                return await context.Cities
+                    .Include(c => c.state)
+                    .FirstOrDefaultAsync(c => c.Id == id);
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("Error al obtener el State por Id", ex);
+            }
         }
 
         public async Task<City> Save(City entity)
         {
+            if (entity.state != null)
+            {
+                var existingState = await context.States.FindAsync(entity.state.Id);
+                if (existingState != null)
+                {
+                    entity.state = existingState;
+                }
+            }
+
             context.Cities.Add(entity);
             await context.SaveChangesAsync();
             return entity;
@@ -44,7 +62,19 @@ namespace Data.Implements
 
         public async Task Update(City entity)
         {
+            if (entity.state != null)
+            {
+                var existingState = await context.States.FindAsync(entity.state.Id);
+
+                if (existingState != null)
+                {
+                    context.Entry(existingState).State = EntityState.Unchanged;
+                    entity.state = existingState;
+                }
+            }
+
             context.Entry(entity).State = EntityState.Modified;
+
             await context.SaveChangesAsync();
         }
 
@@ -75,18 +105,17 @@ namespace Data.Implements
         {
             try
             {
-                var sql = "SELECT * FROM Cities WHERE State=true ORDER BY Id ASC";
-                return await this.context.QueryAsync<City>(sql);
+                return await context.Cities
+                    .Where(c => c.Estado == true)
+                    .OrderBy(c => c.Id)
+                    .Include(c => c.state)
+                    .ToListAsync();
             }
             catch (Exception ex)
             {
-                throw new Exception("Error al obtener todas las Cities", ex);
+                throw new Exception("Error al obtener todos los Cities", ex);
             }
         }
 
-        public Task Delete(City city)
-        {
-            throw new NotImplementedException();
-        }
     }
 }

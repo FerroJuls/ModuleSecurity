@@ -131,7 +131,7 @@ namespace Entity.Migrations
                     CreateAt = table.Column<DateTime>(type: "datetime(6)", nullable: false),
                     UpdateAt = table.Column<DateTime>(type: "datetime(6)", nullable: false),
                     DeleteAt = table.Column<DateTime>(type: "datetime(6)", nullable: false),
-                    State = table.Column<bool>(type: "tinyint(1)", nullable: false),
+                    Estado = table.Column<bool>(type: "tinyint(1)", nullable: false),
                     StateId = table.Column<int>(type: "int", nullable: false)
                 },
                 constraints: table =>

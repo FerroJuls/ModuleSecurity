@@ -15,7 +15,7 @@ namespace Entity.DTO
 
         // Relación con Countries
         public int CountriesId { get; set; }
-        public Countries Countries { get; set; }
+        public string Countries { get; set; }
 
     }
 }

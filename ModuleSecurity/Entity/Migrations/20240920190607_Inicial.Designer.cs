@@ -11,7 +11,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Entity.Migrations
 {
     [DbContext(typeof(ApplicationDBContext))]
-    [Migration("20240913190531_Inicial")]
+    [Migration("20240920190607_Inicial")]
     partial class Inicial
     {
         /// <inheritdoc />
@@ -34,12 +34,12 @@ namespace Entity.Migrations
                     b.Property<DateTime>("DeleteAt")
                         .HasColumnType("datetime(6)");
 
+                    b.Property<bool>("Estado")
+                        .HasColumnType("tinyint(1)");
+
                     b.Property<string>("Name")
                         .IsRequired()
                         .HasColumnType("longtext");
-
-                    b.Property<bool>("State")
-                        .HasColumnType("tinyint(1)");
 
                     b.Property<int>("StateId")
                         .HasColumnType("int");

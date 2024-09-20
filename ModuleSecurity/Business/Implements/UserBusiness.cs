@@ -26,6 +26,10 @@ namespace Business.Implements
             {
                 Id = user.Id,
                 Username = user.Username,
+                Password = user.Password,
+                State = user.State,
+                PersonId = user.PersonId,
+                Person = user.Person.First_name,
             });
 
             return userDtos;
@@ -35,18 +39,26 @@ namespace Business.Implements
         public async Task<UserDto> GetById(int id)
         {
             User user = await this.data.GetById(id);
-            UserDto userDto = new UserDto();
-
-            userDto.Id = user.Id;
-            userDto.Username = user.Username;
-
+            UserDto userDto = new UserDto
+            {
+                Id = user.Id,
+                Username = user.Username,
+                Password = user.Password,
+                State = user.State,
+                PersonId = user.PersonId,
+                Person = user.Person.First_name,
+            };
             return userDto;
         }
+
 
         public User mapearDatos(User user, UserDto entity)
         {
             user.Id = entity.Id;
             user.Username = entity.Username;
+            user.Password = entity.Password;
+            user.State = entity.State;
+            user.PersonId = entity.PersonId;
 
             return user;
         }

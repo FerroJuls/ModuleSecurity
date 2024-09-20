@@ -22,21 +22,38 @@ namespace Data.Implements
         {
             var entity = await GetById(id);
             if (entity == null)
+            {
                 throw new Exception("Registro no encontrado");
-
-            entity.DeleteAt = DateTime.Parse(DateTime.Today.ToString());
-            context.Users.Update(entity);
+            }
+            context.Users.Remove(entity);
             await context.SaveChangesAsync();
         }
 
         public async Task<User> GetById(int id)
         {
-            var sql = @"SELECT * FROM User WHERE Id = @Id ORDER BY Id ASC";
-            return await this.context.QueryFirstOrDefaultAsync<User>(sql, new { Id = id });
+            try
+            {
+                return await context.Users
+                    .Include(u => u.Person)
+                    .FirstOrDefaultAsync(u => u.Id == id);
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("Error al obtener el State por Id", ex);
+            }
         }
 
         public async Task<User> Save(User entity)
         {
+            if (entity.Person != null)
+            {
+                var existingPerson = await context.Persons.FindAsync(entity.Person.Id);
+                if (existingPerson != null)
+                {
+                    entity.Person = existingPerson;
+                }
+            }
+
             context.Users.Add(entity);
             await context.SaveChangesAsync();
             return entity;
@@ -44,7 +61,19 @@ namespace Data.Implements
 
         public async Task Update(User entity)
         {
+            if (entity.Person != null)
+            {
+                var existingPerson = await context.Persons.FindAsync(entity.Person.Id);
+
+                if (existingPerson != null)
+                {
+                    context.Entry(existingPerson).State = EntityState.Unchanged;
+                    entity.Person = existingPerson;
+                }
+            }
+
             context.Entry(entity).State = EntityState.Modified;
+
             await context.SaveChangesAsync();
         }
 
@@ -52,9 +81,6 @@ namespace Data.Implements
         {
             return await this.context.Users.AsNoTracking().Where(item => item.Username == username).FirstOrDefaultAsync();
         }
-
-        //
-
 
         public async Task<IEnumerable<DataSelectDto>> GetAllSelect()
         {
@@ -74,18 +100,19 @@ namespace Data.Implements
             }
         }
 
-
-
         public async Task<IEnumerable<User>> GetAll()
         {
             try
             {
-                var sql = "SELECT * FROM User ORDER BY Id ASC";
-                return await this.context.QueryAsync<User>(sql);
+                return await context.Users
+                    .Where(u => u.State == true)
+                    .OrderBy(u => u.Id)
+                    .Include(u => u.Person)
+                    .ToListAsync();
             }
             catch (Exception ex)
             {
-                throw new Exception("Error al obtener todos los Users", ex);
+                throw new Exception("Error al obtener todos las personas", ex);
             }
         }
 

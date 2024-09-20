@@ -31,12 +31,30 @@ namespace Data.Implements
 
         public async Task<State> GetById(int id)
         {
-            var sql = @"SELECT * FROM State WHERE Id = @Id ORDER BY Id ASC";
-            return await this.context.QueryFirstOrDefaultAsync<State>(sql, new { Id = id });
+            try
+            {
+                return await context.States
+                    .Include(s => s.Countries) 
+                    .FirstOrDefaultAsync(s => s.Id == id);
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("Error al obtener el State por Id", ex);
+            }
         }
+
 
         public async Task<State> Save(State entity)
         {
+            if (entity.Countries != null)
+            {
+                var existingCountry = await context.Countries.FindAsync(entity.Countries.Id);
+                if (existingCountry != null)
+                {
+                    entity.Countries = existingCountry;
+                }
+            }
+
             context.States.Add(entity);
             await context.SaveChangesAsync();
             return entity;
@@ -44,9 +62,22 @@ namespace Data.Implements
 
         public async Task Update(State entity)
         {
+            if (entity.Countries != null)
+            {
+                var existingCountry = await context.Countries.FindAsync(entity.Countries.Id);
+
+                if (existingCountry != null)
+                {
+                    context.Entry(existingCountry).State = EntityState.Unchanged;
+                    entity.Countries = existingCountry;
+                }
+            }
+
             context.Entry(entity).State = EntityState.Modified;
+
             await context.SaveChangesAsync();
         }
+
 
         public async Task<State> GetByName(string name)
         {
@@ -75,13 +106,17 @@ namespace Data.Implements
         {
             try
             {
-                var sql = "SELECT * FROM States WHERE state=true ORDER BY Id ASC";
-                return await this.context.QueryAsync<State>(sql);
+                return await context.States
+                    .Where(s => s.state == true)
+                    .OrderBy(s => s.Id)
+                    .Include(s => s.Countries) 
+                    .ToListAsync();
             }
             catch (Exception ex)
             {
                 throw new Exception("Error al obtener todos los States", ex);
             }
         }
+
     }
 }

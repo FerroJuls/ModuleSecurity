@@ -7,7 +7,7 @@
         public DateTime CreateAt { get; set; }
         public DateTime UpdateAt { get; set; }
         public DateTime DeleteAt { get; set; }
-        public bool State { get; set; }
+        public bool Estado { get; set; }
 
         // Relación con State
         public int StateId { get; set; }

@@ -34,6 +34,8 @@ namespace Business.Implements
                 Birth_of_date = person.Birth_of_date,
                 Phone = person.Phone,
                 State = person.State,
+                CityId = person.CityId,
+                City = person.City.Name,
 
             });
 
@@ -43,21 +45,26 @@ namespace Business.Implements
         public async Task<PersonDto> GetById(int id)
         {
             Person person = await this.data.GetById(id);
-            PersonDto personDto = new PersonDto();
 
-            personDto.Id = person.Id;
-            personDto.First_name = person.First_name;
-            personDto.Last_name = person.Last_name;
-            personDto.Addres = person.Addres;
-            personDto.Email = person.Email;
-            personDto.Type_document = person.Type_document;
-            personDto.Document = person.Document;
-            personDto.Birth_of_date = person.Birth_of_date;
-            personDto.Phone = person.Phone;
-            personDto.State = person.State;
+            PersonDto personDto = new PersonDto
+            {
+                Id = person.Id,
+                First_name = person.First_name,
+                Last_name = person.Last_name,
+                Addres = person.Addres,
+                Email = person.Email,
+                Type_document = person.Type_document,
+                Document = person.Document,
+                Birth_of_date = person.Birth_of_date,
+                Phone = person.Phone,
+                State = person.State,
+                CityId = person.CityId,
+                City = person.City.Name
+            };
 
             return personDto;
         }
+
 
         public Person mapearDatos(Person person, PersonDto entity)
         {
@@ -71,6 +78,7 @@ namespace Business.Implements
             person.Birth_of_date = entity.Birth_of_date;
             person.Phone = entity.Phone;
             person.State = entity.State;
+            person.CityId = entity.CityId;
 
             return person;
         }

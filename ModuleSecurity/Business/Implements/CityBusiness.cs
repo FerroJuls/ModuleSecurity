@@ -26,9 +26,9 @@ namespace Business.Implements
             {
                 Id = city.Id,
                 Name = city.Name,
-                State = city.State,
-
-                
+                Estado = city.Estado,
+                StateId = city.StateId,
+                state = city.state.Name,
             });
 
             return cityDtos;
@@ -37,11 +37,14 @@ namespace Business.Implements
         public async Task<CityDto> GetById(int id)
         {
             City city = await this.data.GetById(id);
+     
             CityDto cityDto = new CityDto
             {
                 Id = city.Id,
                 Name = city.Name,
-                State = city.State,
+                Estado = city.Estado,
+                StateId = city.StateId,
+                state = city.state.Name
             };
 
             return cityDto;
@@ -51,7 +54,8 @@ namespace Business.Implements
         {
             city.Id = entity.Id;
             city.Name = entity.Name;
-            city.State = entity.State;
+            city.Estado = entity.Estado;
+            city.StateId = entity.StateId;
 
             return city;
         }

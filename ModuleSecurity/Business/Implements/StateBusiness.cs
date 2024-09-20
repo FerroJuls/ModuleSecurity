@@ -28,7 +28,7 @@ namespace Business.Implements
                 Name = state.Name,
                 state = state.state,
                 CountriesId = state.CountriesId,
-                Countries = state.Countries,
+                Countries = state.Countries.Name,
             });
 
             return stateDtos;
@@ -43,7 +43,7 @@ namespace Business.Implements
             stateDto.Name = state.Name;
             stateDto.state = state.state;
             stateDto.CountriesId = state.CountriesId;
-            stateDto.Countries = state.Countries;
+            stateDto.Countries = state.Countries.Name;
 
 
             return stateDto;
@@ -55,7 +55,6 @@ namespace Business.Implements
             state.Name = entity.Name;
             state.state = entity.state;
             state.CountriesId = entity.CountriesId;
-            state.Countries = entity.Countries;
 
 
             return state;
