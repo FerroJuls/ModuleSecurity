@@ -26,7 +26,8 @@ namespace Business.Implements
             {
                 Id = role.Id,
                 Name = role.Name,
-                Description = role.Description
+                Description = role.Description,
+                State = role.State,
             });
 
             return roleDtos;
@@ -35,12 +36,14 @@ namespace Business.Implements
         public async Task<RoleDto> GetById(int id)
         {
             Role role = await this.data.GetById(id);
-            RoleDto roleDto = new RoleDto();
+            RoleDto roleDto = new RoleDto
+            {
+                Id = role.Id,
+                Name = role.Name,
+                Description = role.Description, 
+                State = role.State,
 
-            roleDto.Id = role.Id;
-            roleDto.Name = role.Name;
-            roleDto.Description = role.Description;
-
+            };
             return roleDto;
         }
 
@@ -49,14 +52,17 @@ namespace Business.Implements
             role.Id = entity.Id;
             role.Name = entity.Name;
             role.Description = entity.Description;
+            role.State = entity.State;
 
             return role;
         }
 
         public async Task<Role> Save(RoleDto entity)
         {
-            Role role = new Role();
-            role.CreateAt = DateTime.Now.AddHours(-5);
+            Role role = new Role
+            {
+                CreateAt = DateTime.Now.AddHours(-5)
+            };
             role = this.mapearDatos(role, entity);
 
             return await this.data.Save(role);

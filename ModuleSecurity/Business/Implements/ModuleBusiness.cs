@@ -36,12 +36,12 @@ namespace Business.Implements
         public async Task<ModuleDto> GetById(int id)
         {
             Module module = await this.data.GetById(id);
-            ModuleDto moduleDto = new ModuleDto();
-
-            moduleDto.Id = module.Id;
-            moduleDto.Description = module.Description;
-            moduleDto.State = module.State;
-
+            ModuleDto moduleDto = new ModuleDto
+            {
+                Id = module.Id,
+                Description = module.Description,
+                State = module.State,
+            };
             return moduleDto;
         }
 

@@ -54,9 +54,6 @@ namespace Data.Implements
             return await this.context.Modules.AsNoTracking().Where(item => item.Description == description).FirstOrDefaultAsync();
         }
 
-        //
-
-
         public async Task<IEnumerable<DataSelectDto>> GetAllSelect()
         {
             try
@@ -74,8 +71,6 @@ namespace Data.Implements
                 throw new Exception("Error al obtener la lista de selección de Modules", ex);
             }
         }
-
-
 
         public async Task<IEnumerable<Module>> GetAll()
         {

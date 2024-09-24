@@ -22,21 +22,37 @@ namespace Data.Implements
         {
             var entity = await GetById(id);
             if (entity == null)
+            {
                 throw new Exception("Registro no encontrado");
-
-            entity.DeleteAt = DateTime.Parse(DateTime.Today.ToString());
+            };
             context.Views.Update(entity);
             await context.SaveChangesAsync();
         }
 
         public async Task<View> GetById(int id)
         {
-            var sql = @"SELECT * FROM Views WHERE Id = @Id ORDER BY Id ASC";
-            return await this.context.QueryFirstOrDefaultAsync<View>(sql, new { Id = id });
+            try
+            {
+                return await context.Views
+                    .Include(v => v.Module)
+                    .FirstOrDefaultAsync(v => v.Id == id);
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("Error al obtener el View por Id", ex);
+            }
         }
 
         public async Task<View> Save(View entity)
         {
+            if (entity.Module != null)
+            {
+                var existingModule = await context.Modules.FindAsync(entity.Module.Id);
+                if (existingModule != null)
+                {
+                    entity.Module = existingModule;
+                }
+            }
             context.Views.Add(entity);
             await context.SaveChangesAsync();
             return entity;
@@ -44,6 +60,16 @@ namespace Data.Implements
 
         public async Task Update(View entity)
         {
+            if (entity.Module != null)
+            {
+                var existingModule = await context.Modules.FindAsync(entity.Module.Id);
+
+                if (existingModule != null)
+                {
+                    context.Entry(existingModule).State = EntityState.Unchanged;
+                    entity.Module = existingModule;
+                }
+            }
             context.Entry(entity).State = EntityState.Modified;
             await context.SaveChangesAsync();
         }
@@ -52,9 +78,6 @@ namespace Data.Implements
         {
             return await this.context.Views.AsNoTracking().Where(item => item.Name == name).FirstOrDefaultAsync();
         }
-
-        //
-
 
         public async Task<IEnumerable<DataSelectDto>> GetAllSelect()
         {
@@ -74,24 +97,20 @@ namespace Data.Implements
             }
         }
 
-
-
         public async Task<IEnumerable<View>> GetAll()
         {
             try
             {
-                var sql = "SELECT * FROM Views ORDER BY Id ASC";
-                return await this.context.QueryAsync<View>(sql);
+                return await context.Views
+                    .Where(v => v.State == true)
+                    .OrderBy(v => v.Id)
+                    .Include(v => v.Module)
+                    .ToListAsync();
             }
             catch (Exception ex)
             {
                 throw new Exception("Error al obtener todos los Views", ex);
             }
-        }
-
-        public Task<UserRole> Save(UserRole userRole)
-        {
-            throw new NotImplementedException();
         }
     }
 }

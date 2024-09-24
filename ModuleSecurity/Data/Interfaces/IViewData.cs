@@ -10,6 +10,5 @@ namespace Data.Interfaces
         public Task Update(View entity);
         public Task<IEnumerable<View>> GetAll();
         public Task<View> GetByName(string name);
-        Task<UserRole> Save(UserRole userRole);
     }
 }

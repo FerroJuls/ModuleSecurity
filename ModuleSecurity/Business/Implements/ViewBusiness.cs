@@ -2,7 +2,6 @@
 using Data.Interfaces;
 using Entity.DTO;
 using Entity.Model.Security;
-using System.Reflection;
 
 namespace Business.Implements
 {
@@ -28,27 +27,26 @@ namespace Business.Implements
                 Id = view.Id,
                 Name = view.Name,
                 Description = view.Description,
+                State = view.State,
                 ModuleId = view.ModuleId,
+                Module = view.Module.Description
             });
 
             return viewDtos;
         }
 
-        //public async Task<IEnumerable<DataSelectDto>> GetAllSelect()
-        //{
-        //    return await this.data.GetAllSelect();
-        //}
-
         public async Task<ViewDto> GetById(int id)
         {
             View view = await this.data.GetById(id);
-            ViewDto viewDto = new ViewDto();
-
-            viewDto.Id = view.Id;
-            viewDto.Name = view.Name;
-            viewDto.Description = view.Description;
-            viewDto.ModuleId = view.ModuleId;
-
+            ViewDto viewDto = new ViewDto
+            {
+                Id = view.Id,
+                Name = view.Name,
+                Description = view.Description,
+                State = view.State,
+                ModuleId = view.ModuleId,
+                Module = view.Module.Description
+            };
             return viewDto;
         }
 
@@ -57,6 +55,7 @@ namespace Business.Implements
             view.Id = entity.Id;
             view.Name = entity.Name;
             view.Description = entity.Description;
+            view.State = entity.State;
             view.ModuleId = entity.ModuleId;
                 
             return view;
@@ -64,11 +63,11 @@ namespace Business.Implements
 
         public async Task<View> Save(ViewDto entity)
         {
-            View view = new View();
-            view.CreateAt = DateTime.Now.AddHours(-5);
+            View view = new View
+            {
+                CreateAt = DateTime.Now.AddHours(-5)
+            };
             view = this.mapearDatos(view, entity);
-            view.Module = null;
-
             return await this.data.Save(view);
         }
 

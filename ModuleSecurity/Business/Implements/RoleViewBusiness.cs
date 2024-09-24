@@ -25,6 +25,12 @@ namespace Business.Implements
             var roleViewDtos = roleViews.Select(roleView => new RoleViewDto
             {
                 Id = roleView.Id,
+                State = roleView.State,
+                RoleId = roleView.RoleId,
+                Role = roleView.Role.Name,
+                ViewId = roleView.ViewId,
+                View = roleView.View.Name
+
             });
 
             return roleViewDtos;
@@ -34,26 +40,36 @@ namespace Business.Implements
         public async Task<RoleViewDto> GetById(int id)
         {
             RoleView roleView = await this.data.GetById(id);
-            RoleViewDto roleViewDto = new RoleViewDto();
+            RoleViewDto roleViewDto = new RoleViewDto
+            {
+                Id = roleView.Id,
+                State = roleView.State,
+                RoleId = roleView.RoleId,
+                Role = roleView.Role.Name,
+                ViewId = roleView.ViewId,
+                View = roleView.View.Name
 
-            roleViewDto.Id = roleView.Id;
-
+            };
             return roleViewDto;
         }
 
         public RoleView mapearDatos(RoleView roleView, RoleViewDto entity)
         {
             roleView.Id = entity.Id;
+            roleView.State = entity.State;
+            roleView.RoleId = entity.RoleId;
+            roleView.ViewId = entity.ViewId;
 
             return roleView;
         }
 
         public async Task<RoleView> Save(RoleViewDto entity)
         {
-            RoleView roleView = new RoleView();
-            roleView.CreateAt = DateTime.Now.AddHours(-5);
+            RoleView roleView = new RoleView
+            {
+                CreateAt = DateTime.Now.AddHours(-5)
+            };
             roleView = this.mapearDatos(roleView, entity);
-
             return await this.data.Save(roleView);
         }
 

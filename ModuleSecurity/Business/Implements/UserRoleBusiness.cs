@@ -2,6 +2,7 @@
 using Data.Interfaces;
 using Entity.DTO;
 using Entity.Model.Security;
+using Microsoft.EntityFrameworkCore.Metadata.Internal;
 
 namespace Business.Implements
 {
@@ -23,44 +24,51 @@ namespace Business.Implements
         public async Task<IEnumerable<UserRoleDto>> GetAll()
         {
             IEnumerable<UserRole> UserRoles = await this.data.GetAll();
-            var UserRoleDtos = UserRoles.Select(view => new UserRoleDto
+            var UserRoleDtos = UserRoles.Select(userRole => new UserRoleDto
             {
-                Id = view.Id
+                Id = userRole.Id,
+                State = userRole.State,
+                RoleId = userRole.RoleId,
+                Role = userRole.Role.Name,
+                UserId = userRole.UserId,
+                User = userRole.User.Username
             });
 
             return UserRoleDtos;
         }
-
-        //public async Task<IEnumerable<DataSelectDto>> GetAllSelect()
-        //{
-        //    return await this.data.GetAllSelect();
-        //}
-
         public async Task<UserRoleDto> GetById(int id)
         {
             UserRole userRole = await this.data.GetById(id);
-            UserRoleDto userRoleDto = new UserRoleDto();
+            UserRoleDto userRoleDto = new UserRoleDto
+            {
+                Id = userRole.Id,
+                State = userRole.State,
+                RoleId = userRole.RoleId,
+                Role = userRole.Role.Name,
+                UserId = userRole.UserId,
+                User = userRole.User.Username
 
-            userRoleDto.Id = userRoleDto.Id;
-
+            };
             return userRoleDto;
         }
 
         public UserRole mapearDatos(UserRole userRole, UserRoleDto entity)
         {
             userRole.Id = entity.Id;
+            userRole.State = entity.State;
+            userRole.RoleId = entity.RoleId;
+            userRole.UserId = entity.UserId;
 
             return userRole;
         }
 
         public async Task<UserRole> Save(UserRoleDto entity)
         {
-            UserRole userRole = new UserRole();
-            userRole.CreateAt = DateTime.Now.AddHours(-5);
+            UserRole userRole = new UserRole
+            {
+                CreateAt = DateTime.Now.AddHours(-5)
+            };
             userRole = this.mapearDatos(userRole, entity);
-            userRole.Role = null;
-            userRole.User = null;
-
             return await this.data.Save(userRole);
         }
 

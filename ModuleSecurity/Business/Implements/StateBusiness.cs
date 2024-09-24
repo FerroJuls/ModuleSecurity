@@ -37,15 +37,15 @@ namespace Business.Implements
         public async Task<StateDto> GetById(int id)
         {
             State state = await this.data.GetById(id);
-            StateDto stateDto = new StateDto();
+            StateDto stateDto = new StateDto
+            {
+                Id = state.Id,
+                Name = state.Name,
+                state = state.state,
+                CountriesId = state.CountriesId,
+                Countries = state.Countries.Name
 
-            stateDto.Id = state.Id;
-            stateDto.Name = state.Name;
-            stateDto.state = state.state;
-            stateDto.CountriesId = state.CountriesId;
-            stateDto.Countries = state.Countries.Name;
-
-
+            };
             return stateDto;
         }
 

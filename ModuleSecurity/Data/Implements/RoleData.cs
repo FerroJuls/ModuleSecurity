@@ -29,19 +29,10 @@ namespace Data.Implements
             await context.SaveChangesAsync();
         }
 
-
         public async Task<Role> GetById(int id)
         {
-            try
-            {
-                var sql = @"SELECT * FROM Roles WHERE Id = @Id ORDER BY Id ASC";
-                return await this.context.QueryFirstOrDefaultAsync<Role>(sql, new { Id = id });
-
-            }
-            catch (Exception)
-            {
-                throw;
-            }
+            var sql = @"SELECT * FROM Countries WHERE Id = @Id ORDER BY Id ASC";
+            return await this.context.QueryFirstOrDefaultAsync<Role>(sql, new { Id = id });
         }
 
         public async Task<Role> Save(Role entity)
@@ -62,16 +53,6 @@ namespace Data.Implements
             return await this.context.Roles.AsNoTracking().Where(item => item.Name == name).FirstOrDefaultAsync();
         }
 
-        //public async Task<IEnumerable<DataSelectDto>> GetAllSelect()
-        //{
-        //    var sql = @"
-        //                SELECT Id, CONCAT(Name, ' - ', Description) AS TextoMostrar
-        //                FROM Role
-        //                WHERE Deleted_at IS NULL AND State = 1
-        //                ORDER BY Id ASC";
-        //    return await this.context.QueryAsync<DataSelectDto>(sql);
-        //}
-
         public async Task<IEnumerable<DataSelectDto>> GetAllSelect()
         {
             try
@@ -90,18 +71,12 @@ namespace Data.Implements
             }
         }
 
-        //public async Task<IEnumerable<Role>> GetAll()
-        //{
-        //    var sql = @"SELECT * FROM Role ORDER BY Id ASC";
-        //    return await this.context.QueryAsync<Role>(sql);
-        //}
-
 
         public async Task<IEnumerable<Role>> GetAll()
         {
             try
             {
-                var sql = "SELECT * FROM Roles ORDER BY Id ASC";
+                var sql = "SELECT * FROM Roles WHERE State=true ORDER BY Id ASC";
                 return await this.context.QueryAsync<Role>(sql);
             }
             catch (Exception ex)

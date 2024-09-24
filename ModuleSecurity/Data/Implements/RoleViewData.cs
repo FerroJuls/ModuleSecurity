@@ -22,30 +22,82 @@ namespace Data.Implements
         {
             var entity = await GetById(id);
             if (entity == null)
+            {
                 throw new Exception("Registro no encontrado");
-
-            entity.DeleteAt = DateTime.Parse(DateTime.Today.ToString());
-            context.RoleViews.Update(entity);
+            }
+            context.RoleViews.Remove(entity);
             await context.SaveChangesAsync();
         }
 
 
         public async Task<RoleView> GetById(int id)
         {
-            var sql = @"SELECT * FROM RoleViews WHERE Id = @Id ORDER BY Id ASC";
-            return await this.context.QueryFirstOrDefaultAsync<RoleView>(sql, new { Id = id });
+            try
+            {
+                return await context.RoleViews
+                    .Include(rv => rv.Role)
+                    .Include(rv => rv.View)
+                    .FirstOrDefaultAsync(rv => rv.Id == id);
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("Error al obtener el UserRole por Id", ex);
+            }
         }
+
 
         public async Task<RoleView> Save(RoleView entity)
         {
+            if (entity.View != null)
+            {
+                var existingView = await context.Views.FindAsync(entity.View.Id);
+                if (existingView != null)
+                {
+                    entity.View = existingView;
+                }
+            }
+
+            if (entity.Role != null)
+            {
+                var existingRole = await context.Roles.FindAsync(entity.Role.Id);
+                if (existingRole != null)
+                {
+                    entity.Role = existingRole;
+                }
+            }
+
             context.RoleViews.Add(entity);
             await context.SaveChangesAsync();
             return entity;
         }
 
+
         public async Task Update(RoleView entity)
         {
+            if (entity.View != null)
+            {
+                var existingView = await context.Views.FindAsync(entity.View.Id);
+
+                if (existingView != null)
+                {
+                    context.Entry(existingView).State = EntityState.Unchanged;
+                    entity.View = existingView;
+                }
+            }
+
+            if (entity.Role != null)
+            {
+                var existingRole = await context.Roles.FindAsync(entity.Role.Id);
+
+                if (existingRole != null)
+                {
+                    context.Entry(existingRole).State = EntityState.Unchanged;
+                    entity.Role = existingRole;
+                }
+            }
+
             context.Entry(entity).State = EntityState.Modified;
+
             await context.SaveChangesAsync();
         }
 
@@ -54,40 +106,22 @@ namespace Data.Implements
             return await this.context.RoleViews.AsNoTracking().Where(item => item.Id == id).FirstOrDefaultAsync();
         }
 
-        //
-
-
-        public async Task<IEnumerable<DataSelectDto>> GetAllSelect()
-        {
-            try
-            {
-                var sql = @"
-                    SELECT Id, CONCAT() AS TextoMostrar
-                    FROM RoleViews
-                    WHERE Deleted_at IS NULL AND State = 1
-                    ORDER BY Id ASC";
-
-                return await this.context.QueryAsync<DataSelectDto>(sql);
-            }
-            catch (Exception ex)
-            {
-                throw new Exception("Error al obtener la lista de selección de RoleViews", ex);
-            }
-        }
-
-
-
         public async Task<IEnumerable<RoleView>> GetAll()
         {
             try
             {
-                var sql = "SELECT * FROM RoleViews ORDER BY Id ASC";
-                return await this.context.QueryAsync<RoleView>(sql);
+                return await context.RoleViews
+                    .Where(s => s.State == true)
+                    .Include(rv => rv.View)
+                    .Include(rv => rv.Role)
+                    .OrderBy(rv => rv.Id)
+                    .ToListAsync();
             }
             catch (Exception ex)
             {
-                throw new Exception("Error al obtener todos los RoleViews", ex);
+                throw new Exception("Error al obtener todos los UserRoles", ex);
             }
         }
+
     }
 }
